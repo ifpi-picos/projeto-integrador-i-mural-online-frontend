@@ -1,6 +1,6 @@
 # Projeto > Mural Virtual
 
-> :heavy_exclamation_mark: **OBS**: Este reposiório contempla a penas o Frontend, para execução deste faz-se necessário que o backend esteja instalado e rodando.
+> :heavy_exclamation_mark: **OBS**: Este repositório contempla a penas o Frontend, para execução deste faz-se necessário que o backend esteja instalado e rodando.
 
 ## :computer: Sobre o projeto 
 O projeto **Mural Virtual** é uma aplicação de autoria dos alunos do curso de Análise e Desenvolvimento de sistemas do Instituto Federal do Piauí - Campus Picos.
