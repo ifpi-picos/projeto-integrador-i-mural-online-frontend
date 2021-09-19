@@ -1,36 +1,117 @@
-# projeto-los-hermanos-frontend
+# Projeto > Mural Virtual
 
-## Project setup
+> :heavy_exclamation_mark: **OBS**: Este reposiório contempla a penas o Frontend, para execução deste faz-se necessário que o backend esteja instalado e rodando.
+
+## :computer: Sobre o projeto 
+O projeto **Mural Virtual** é uma aplicação de autoria dos alunos do curso de Análise e Desenvolvimento de sistemas do Instituto Federal do Piauí - Campus Picos.
+
+Esse projeto foi criado como partes das disciplinas de Engenharia de software, Programação Web I e II e agora está sendo utilizado e mantido na disciplina de projeto integrador I.
+
+A sua principal função é permitir a criação de noticias sobre o campus e reunir tais noticiais em um só lugar, para acesso de todos.
+
+## :paperclip: Funcionalidades
+
+### :closed_lock_with_key: Autenticação
+- [x] Cadastro
+- [x] Login
+- [x] Logout
+- [ ] Recuperação de senha
+- [ ] Validação dos campos de login e senha
+
+### :pushpin: Postagem
+- [x] Criação
+- [x] Atualização
+- [x] Deleção
+
+### :heavy_check_mark: Usabilidade
+- [ ] Painel administrativo
+- [ ] Barra de pesquisa de postagens
+- [ ] Filtragem de notícias por categoria
+
+## :art: Layout
+
+### Tela principal da aplicação
+[![Captura-de-tela-de-2021-09-07-15-25-52.png](https://i.postimg.cc/0NbLcDYL/Captura-de-tela-de-2021-09-07-15-25-52.png)](https://postimg.cc/QBZ4MBnb)
+
+
+### Tela de Cadastro
+[![cadastro.png](https://i.postimg.cc/jjZGhvn6/cadastro.png)](https://postimg.cc/HJ8ZYw2j)
+
+
+### Tela de Login
+[![login.png](https://i.postimg.cc/Jn7Hf7nV/login.png)](https://postimg.cc/f3FbXNmB)
+
+
+### Tela de postagens
+[![Captura-de-tela-de-2021-09-18-16-58-06.png](https://i.postimg.cc/dtJQnNLp/Captura-de-tela-de-2021-09-18-16-58-06.png)](https://postimg.cc/s10RgcP4)
+
+
+### Tela de cadastro de postagens
+[![Captura-de-tela-de-2021-09-18-16-58-47.png](https://i.postimg.cc/15WSBmxV/Captura-de-tela-de-2021-09-18-16-58-47.png)](https://postimg.cc/BX1RQGnJ)
+
+
+### Tela de atualização de postagem
+[![Captura-de-tela-de-2021-09-18-16-59-35.png](https://i.postimg.cc/V6cc2kWf/Captura-de-tela-de-2021-09-18-16-59-35.png)](https://postimg.cc/2qTJZmtM)
+
+
+
+## :triangular_ruler: Configuração
+Este projeto Se divide em dois modulo:
+- **Frontend** (este repositorio)
+- **Backend** [Repositório Backend: Mural Virtual](https://github.com/ifpi-picos/projeto-integrador-i-mural-online-backend)
+
+## :clipboard: Pré-requisitos 
+Os requísitos básicos para execução da aplicação são: ter instalado em sua maquina o [Git](https://git-scm.com/), [Nodejs](https://nodejs.org/en/) e um editor de código [VSCode](https://code.visualstudio.com/download).
+
+> **Nota:** Para rodar essa aplicação(Frontend) é necessario que o servidor da mesma esteja instalado e rodando.
+
+> **Observação:** Baixe o repositório do backend que se encontra neste
+link: [Repositório Backend: Mural Virtual](https://github.com/ifpi-picos/projeto-integrador-i-mural-online-backend), e faça as configuraçoes necessárias.
+
+## :hammer:  Instalação
+
+### Comece a instalação clonando este repositório
 ```
-npm install
+$ git clone https://github.com/ifpi-picos/projeto-integrador-i-mural-online-frontend.git
 ```
-## Link para o repositório do Backend da Aplicação
 
-[Repositório Backend: Mural Virtual](https://github.com/ifpi-picos/projeto-integrador-i-mural-online-backend)
+### Após o clone acesse a pasta do projeto no seu terminal linux/cmd windows
+```
+$ cd projeto-integrador-i-mural-online-frontend
+```
 
-## Link para o repositorio do Front-end (Esse repositório) da aplicação
+### Instale as dependências do Projeto
+```
+$ npm installl
+```
 
-[Repositório Front-end: Mural Virtual](https://github.com/ifpi-picos/projeto-integrador-i-mural-online-frontend)
+### Execute a aplicação
+```
+$ npm run serve
+```
+> a aplicação vai está rodando em: ```http://localhost:8080/```
+
+
+## :wrench: Tecnologias usadas no Front
+- [Vue](https://vuejs.org/v2/guide/installation.html)
+- [Axios](https://www.npmjs.com/package/axios)
+- [bootstrap-vue](https://bootstrap-vue.org/)
+- [vue-router](https://router.vuejs.org/)
+- [vuex](https://vuex.vuejs.org/)
+- [Core-js](https://www.npmjs.com/package/core-js)
+
+## :straight_ruler: Ferramentas de auxilio
+- **Editor:** [VSCode](https://code.visualstudio.com/download)
+- **Editor de Markdown:** [StackEditor](https://stackedit.io)
+- **Teste de API:** [Insomnia](https://insomnia.rest/download)
+- **Ícones:** [Font Awesome](https://fontawesome.com)
+
 
 ## Deploy da aplicação
+A aplicação já está no ar no seguinte link:
 
-[Aplicação Mural Virtual](https://mural-virtual.netlify.app/)
+:pushpin: [Aplicação Mural Virtual](https://mural-virtual.netlify.app/)
 
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
