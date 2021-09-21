@@ -7,7 +7,6 @@ export default {
   }),
   getters: {
     authenticated: state => !!state.token,
-    // eslint-disable-next-line no-extra-boolean-cast
     userAuthenticated: state => (!!state.user) ? JSON.parse(state.user) : {},
   },
   actions: {
