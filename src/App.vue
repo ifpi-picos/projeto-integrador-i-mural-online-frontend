@@ -15,7 +15,8 @@ export default {
 #app {
   background-color:#00FA9A;
   height: 100vh !important;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

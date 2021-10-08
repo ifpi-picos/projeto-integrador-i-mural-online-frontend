@@ -9,9 +9,11 @@ import "bootstrap-vue/dist/bootstrap-vue.css"
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 
+Vue.component('fa-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 new Vue({

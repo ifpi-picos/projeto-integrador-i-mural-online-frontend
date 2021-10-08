@@ -1,0 +1,17 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 260" width="1254" height="260">
+	<title>Novo Projeto</title>
+	<defs>
+		<image  width="1280" height="720" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAALQAQMAAAD1s08VAAAAAXNSR0IB2cksfwAAAANQTFRFAAAAp3o92gAAAAF0Uk5TAEDm2GYAAACHSURBVHic7cExAQAAAMKg9U9tCU+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgaxN8AAQfAspoAAAAASUVORK5CYII="/>
+		<image width="50" height="50" id="img2" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAEOElEQVRogc3aW4hVZRgGYB07iBHoeBiVqKCTUUalGZ2gqyJBIpIiELFMDLODZaVBFIXQVWGQIXUZdRFBIEZHKrKozMqyqbAik3Kwkuk0mo3zdLG+3Vpundlr77XW3r5Xs79//e/3vmuv9f3f/+8ZNeoIAEbjHuzCbqzotKaWgMccigc6rasp4OoQPoArsQCDEVvdaX25gB70hejlmfj1GTP3d1JjQ8R7sTHEvoLRdeOLcCDGV3VKZ0Pg7hC5G1OHuebGjJl7262xIXA29mII8xpce1OYGcJt7dLYEBiLz+MuP5lzzuKMmVur1pgLeCpM9GJcE/OWhJEhLKtSYx4xV4WQ/bighflZM7dUoTGPiGypXVmA547gGMLSMjXmSZ4tte9gTEG+O4PrABaWpTObYDpmYhbOwsSI3xWJf8MJJeVaGZyDuLYoWQ+WxYK2x+HRh3/i7/llmMjkvy94v2uV4CSszwisYQ8+wdv4AD9mxp4p00TouCS4dzQ7sQu346+MwHexFCcPM2cSLir6XhyGdxH6Q8OaZiaOxQsZA5swp0xxOXX04KWMjudwdDMEtaqzX1I1RjeeVS4wH7+Ejn4saoXkvSD4BpMr0DlS7u648zW8jhNbJZuMrUH0lWE61rIh2WztjLwDkkrVVZR0Aj5uhxmMw1rJCg7v4/QyE0zA5oyZaaWRpzkuxvbIsTe+hVKrXi1RJWaiMj4q3UxtxbllcI+UdCI+jYRfYEpBvqlxU2qV8cGmymrB5BMlKzlsK2IGc4OnD+eXqTOvgPH4qOhjJlno4KeyNTYj4pFMjd+GnhZ5dgVHd9ka8ySfGy/nIL4tYgZbYv4ZVWgdKfEp0vZ9laRB/Cw+f9msGUnHDLOr0ny4pMdJV/oXRe9VV82aMiM9XTmzOuWHJq31Pr04vm6sW7qg5TIj2Q7/EXPa08thRST8HTPqxrrwkHRRy2UGp8a1fdWqTxNejn8lPdA1dWPjsSEEDUoWtdrj0juSGSyP6za0w8Q0/BwJ19SNzQix8CuuiHi20fwa04fhrrU8i6s2cay0qrwq08ThOvwZY1vUbXsl1axWGHrVdc24LMYGxMlLlUaejmQ/YFLExkiavFqr/axhjkEd3Gj+/83EO/VhxNdWbWJJ5o6dF7HJeDPi+2V+qBmBJ1uaeyWN4ur43D/cY1eWiTnYF8kWRmwWdkRsFy5tgi/baH4vKRxwc5Umpki3mU9EbAH+jthmLeydHdxowvOqOszAUXgrEm2SrOTrMsnX4ZgC/N14Q3LE1DJPnkSPZx6d2dJTlH2VPgZlAjdkXuLV0rVjJy7stL5cwDnSI9HeMENSodp6ntUyJLW+1uxlsV679s9FIVmYNtYZGFDFDylVAg/XmdiOmZ3W1RQwz8Ft98uY0GldTQGnSX9nGJL0TsXOVjsBacPWr8F/IRzRwGthprwD4g7gP+y9b8dFQT9UAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.txt0 { font-size: 140px;fill: #ffffff;font-weight: 400;font-family: "AlfaSlabOne-Regular", "Alfa Slab One" } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="-144" />
+	<text id="Mural Online" style="transform: matrix(1,0,0,1,0,214)" >
+		<tspan x="0" y="0" class="txt0">M</tspan><tspan  y="0" class="txt0">u</tspan><tspan  y="0" class="txt0">r</tspan><tspan  y="0" class="txt0">a</tspan><tspan  y="0" class="txt0">l</tspan><tspan  y="0" class="txt0"> </tspan><tspan  y="0" class="txt0">O</tspan><tspan  y="0" class="txt0">n</tspan><tspan  y="0" class="txt0">l</tspan><tspan  y="0" class="txt0">i</tspan><tspan  y="0" class="txt0">n</tspan><tspan  y="0" class="txt0">e
+</tspan>
+	</text>
+	<use id="icons8-pin-50 (2)" href="#img2" transform="matrix(4.36,0,0,4.36,1004,0)"/>
+</svg>

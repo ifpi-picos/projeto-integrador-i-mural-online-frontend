@@ -1,7 +1,10 @@
 <template>
   <div>
     <b-navbar toggleable="lg" class="header">
-      <b-navbar-brand class="brand">Mural Online</b-navbar-brand>
+      <b-navbar-brand class="brand">
+        Mural Online
+        <fa-icon icon="thumbtack"></fa-icon>
+      </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav class="ml-auto">
         <b-navbar-nav class="ml-auto">
@@ -10,15 +13,13 @@
             Home
           </b-nav-item>
           <b-nav-item v-if="isAdmin" to="Postagens">
-            <b-icon-plus class="icon"></b-icon-plus>
-            Suas Postagens
+            <b-icon-plus class="icon"></b-icon-plus>Suas Postagens
           </b-nav-item>
           <template v-if="authenticated">
             <b-nav-item-dropdown right >
               <template #button-content>
                 <em class="text-light">
-                  <b-icon-person-circle class="icon"></b-icon-person-circle>
-                  {{ userAuthenticated.email }}
+                  <b-icon-person-circle class="icon"></b-icon-person-circle>{{ userAuthenticated.email }}
                 </em>
               </template>
               <b-dropdown-item to="perfil">Profile</b-dropdown-item>

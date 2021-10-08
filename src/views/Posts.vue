@@ -1,14 +1,60 @@
 <template>
   <b-container fluid>
-    <div class="d-flex justify-content-end py-2">
-      <b-button v-b-modal.addNoticeModal @click="reset()">
-        <b-icon-plus-circle class="icon"></b-icon-plus-circle>
-      </b-button>
-      <b-modal 
-        id="addNoticeModal" :title="noticeIdToEdit ? 'Atualizar esta postagem' : 'Cadastrar uma postagem'" 
+    <div class="d-flex justify-content-center">
+      <div class="col-6 col-ls-1 py-4">
+        <form id="form-notice">
+          <input
+            class="input ocult"
+            id="title"
+            placeholder="Título"
+            v-model="formCreateNotice.title"
+            type="text"
+            required
+          />
+          <textarea
+            class="input"
+            id="description"
+            placeholder="Criar uma nova Notícia"
+            v-model="formCreateNotice.description"
+            @input="autoResize"
+            required
+          ></textarea>
+          <div class="ocult">
+            <div class="d-flex justify-content-end">
+              <button @click.prevent="createNotice()">
+                <b-icon-plus></b-icon-plus>criar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div v-if="noticeList.length" class="d-flex flex-wrap pt-1">
+      <div v-for="(notice, index) in noticeList" :key="index" class="col-lg-3 col-md-6 col-ls-1 py-4">
+        <Notice 
+          editable
+          :title="notice.title" 
+          :description="notice.description"
+          :id="notice.id"
+          @delete="deleteNotice(notice.id)"
+          @update="setValuesToUpdate(notice)"
+        ></Notice>
+      </div>
+    </div>
+    <div v-else class="d-flex flex-wrap pt-1">
+      <div class="col-lg-3 col-md-6 col-ls-1">
+        <Notice 
+          title="Sem Noticias" 
+          description="Você ainda não postou nada"
+          disabled
+        ></Notice>
+      </div>
+    </div>
+    <b-modal 
+        id="addNoticeModal" title="Atualizar esta postagem" 
         ref="addNoticeModal" hide-footer
       >        
-        <b-form @submit.prevent="noticeIdToEdit ? updateNotice() : createNotice()">
+        <b-form>
           <b-form-group
             id="input-group-1"
             label="Título"
@@ -31,29 +77,10 @@
             ></b-form-textarea>
           </b-form-group>
           <b-form-group class="text-center">
-            <b-button type="submit" variant="primary">Enviar</b-button>
+            <b-button @submit.prevent="updateNotice()" variant="primary">Enviar</b-button>
           </b-form-group>
         </b-form>
-      </b-modal>
-    </div>
-    <div v-if="noticeList.length" class="d-flex flex-wrap pt-1">
-      <div v-for="(notice, index) in noticeList" :key="index" class="col-lg-3 col-md-6 col-ls-1 py-4">
-        <div>
-          <button class="btn btn-warning" v-b-modal.addNoticeModal @click="setValuesToUpdate(notice)">
-            <b-icon-pencil class="icon"></b-icon-pencil>
-          </button>
-          <button class="btn btn-danger" @click="deleteNotice(notice.id)">
-            <b-icon-trash class="icon"></b-icon-trash>
-          </button>
-        </div>
-        <Notice :title="notice.title" :description="notice.description"></Notice>
-      </div>
-    </div>
-    <div v-else class="d-flex flex-wrap pt-1">
-      <div class="col-lg-3 col-md-6 col-ls-1">
-        <Notice title="Sem Noticias" description="Você ainda não postou nada"></Notice>
-      </div>
-    </div>
+    </b-modal>
   </b-container>
 </template>
 <script>
@@ -75,7 +102,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('auth', ['userAuthenticated'])
+    ...mapGetters('auth', ['userAuthenticated']),
   },
   mounted(){
     const uid = this.userAuthenticated.id
@@ -83,6 +110,11 @@ export default {
     this.getNoticeList(uid)
   },
   methods: {
+    autoResize(e) {
+      const textarea = e.target;
+      textarea.style.height = 'auto';
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    },
     getNoticeList(id){
       axios.get(`notices/getByUser/${id}`).then(
         resp=>{
@@ -138,6 +170,40 @@ export default {
       this.formCreateNotice.title = ""
       this.formCreateNotice.description = ""
     }
-  }
+  },
 }
 </script>
+<style scoped>
+#form-notice {
+  background-color: white;
+  padding: 8px;
+  box-shadow: 
+    0 0 5px rgba(11, 11, 19, 0.4),
+    0 0 6px rgba(11, 11, 19, 0.3),
+    0 0 8px rgba(11, 11, 19, 0.2);
+}
+#form-notice, .input {
+  border-radius: 5px;
+}
+#form-notice textarea {
+  resize: none;
+  overflow: hidden;
+}
+#form-notice:hover .ocult {
+  display: block;
+}
+#form-notice .input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+#form-notice .ocult {
+  display: none;
+}
+#form-notice button {
+  background-color: transparent;
+  /* background-color: rgba(0,0,0,.4); */
+  border: none;
+  border-radius: 50%;
+}
+</style>

@@ -22,9 +22,13 @@ const routes = [
 				path: 'perfil',
 				beforeEnter: guard.auth,
 				component: () => import('../views/Profile.vue'),
-			}
+			},
 		]
 	},
+	{
+		path: '*',
+		component: ()=>import('../components/PageNotFound.vue')
+	}
 ]
 
 const router = new VueRouter({
