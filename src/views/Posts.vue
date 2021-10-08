@@ -29,8 +29,8 @@
         </form>
       </div>
     </div>
-    <div v-if="noticeList.length" class="d-flex flex-wrap pt-1">
-      <div v-for="(notice, index) in noticeList" :key="index" class="col-lg-3 col-md-6 col-ls-1 py-4">
+    <div v-if="noticeList.length" class="d-flex flex-wrap">
+      <div v-for="(notice, index) in noticeList" :key="index" class="col-lg-3 col-md-6 col-ls-1">
         <Notice 
           editable
           :title="notice.title" 
@@ -51,8 +51,8 @@
       </div>
     </div>
     <b-modal 
-        id="addNoticeModal" title="Atualizar esta postagem" 
-        ref="addNoticeModal" hide-footer
+        id="updateNoticeModal" title="Atualizar esta postagem" 
+        ref="updateNoticeModal" hide-footer
       >        
         <b-form>
           <b-form-group
@@ -62,7 +62,7 @@
           >
             <b-form-input
               id="title"
-              v-model="formCreateNotice.title"
+              v-model="formUpdateNotice.title"
               type="text"
               required
             ></b-form-input>
@@ -71,13 +71,13 @@
           <b-form-group id="input-group-2" label="Descrição" label-for="description">
             <b-form-textarea
               id="description"
-              v-model="formCreateNotice.description"
+              v-model="formUpdateNotice.description"
               rows="3"
               required
             ></b-form-textarea>
           </b-form-group>
           <b-form-group class="text-center">
-            <b-button @submit.prevent="updateNotice()" variant="primary">Enviar</b-button>
+            <b-button @click.prevent="updateNotice()" variant="primary">Enviar</b-button>
           </b-form-group>
         </b-form>
     </b-modal>
@@ -95,6 +95,11 @@ export default {
       noticeIdToEdit: null,
       noticeList: [],
       formCreateNotice: {
+        userId: '',
+        title: '',
+        description: '',
+      },
+      formUpdateNotice: {
         userId: '',
         title: '',
         description: '',
@@ -137,7 +142,7 @@ export default {
       )
     },
     updateNotice(){
-      axios.put(`notices/${this.noticeIdToEdit}`, this.formCreateNotice).then(
+      axios.put(`notices/${this.noticeIdToEdit}`, this.formUpdateNotice).then(
         () => {
           alert('postagem atualizada com sucesso!')
           this.getNoticeList(this.userAuthenticated.id)
@@ -159,17 +164,11 @@ export default {
       )
     },
     setValuesToUpdate(notice){
-      this.reset()
       this.noticeIdToEdit = notice.id
-      this.formCreateNotice.title = notice.title
-      this.formCreateNotice.description = notice.description
-      this.formCreateNotice.userId = notice.userId
+      this.formUpdateNotice.title = notice.title
+      this.formUpdateNotice.description = notice.description
+      this.formUpdateNotice.userId = notice.userId
     },
-    reset(){
-      this.noticeIdToEdit = null
-      this.formCreateNotice.title = ""
-      this.formCreateNotice.description = ""
-    }
   },
 }
 </script>

@@ -8,7 +8,7 @@
       </div>
       <div class="options" v-if="!disabled">
         <template v-if="editable">
-          <button @click="updateN" v-b-modal.addNoticeModal>
+          <button @click="updateN" v-b-modal.updateNoticeModal>
             <b-icon-pencil></b-icon-pencil>
           </button>
           <button @click="deleteN">
