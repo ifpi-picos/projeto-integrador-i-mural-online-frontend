@@ -1,21 +1,23 @@
 import axios from '../../services/axios'
+const jwt = require('jsonwebtoken')
 export default {
   namespaced: true,
   state: () => ({ 
-    token: localStorage.token,
-    user: localStorage.user
+    token: localStorage.getItem('token'),
   }),
   getters: {
     authenticated: state => !!state.token,
-    userAuthenticated: state => (!!state.user) ? JSON.parse(state.user) : {},
+    userAuthenticated: state => {
+      if(state.token){
+        const data = jwt.decode(state.token)
+        return data
+      }
+    },
   },
   actions: {
     async signIn({ commit }, userSignin){
       try {
         const res = await axios.post('auth/signin', userSignin)
-        const { user, token } = res.data
-        commit('setUser', JSON.stringify(user))
-        commit('setToken', token)
         commit('signIn', res.data)
       }
       catch(err){
@@ -33,27 +35,19 @@ export default {
         throw err
       }
     },
-    async signOut({commit}){
-      commit('setToken', '')
-      commit('setUser', '')
+    signOut({commit}){
       commit('signOut')
     }
   },
   mutations: {
     signIn(state, data) {
-			const { token, user } = data
-			localStorage.setItem('user', JSON.stringify(user))
-			localStorage.setItem('token', token)
+			const { token } = data
+      state.token = token
+      localStorage.setItem('token', token)
 		},
-		signOut() {
-			localStorage.setItem('token', '')
-			localStorage.setItem('user', '')
-		},
-		setToken(state, token) {
-			state.token = token
-		},
-		setUser(state, user) {
-			state.user = user
+		signOut(state) {
+      state.token = null
+      localStorage.removeItem('token')
 		},
 	},
 

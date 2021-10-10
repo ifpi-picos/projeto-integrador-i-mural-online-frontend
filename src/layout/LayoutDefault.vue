@@ -1,21 +1,17 @@
 <template>
   <div>
     <b-navbar toggleable="lg" class="header">
-      <b-navbar-brand class="brand">
+      <b-navbar-brand class="brand" to="/">
         Mural Online
         <fa-icon icon="thumbtack"></fa-icon>
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav class="ml-auto">
         <b-navbar-nav class="ml-auto">
-          <b-nav-item v-if="isAdmin" to="/">
-            <b-icon-house-fill class="icon"></b-icon-house-fill>
-            Home
-          </b-nav-item>
-          <b-nav-item v-if="isAdmin" to="Postagens">
+          <b-nav-item v-if="userRole && userRole == 'publisher'" to="Postagens">
             <b-icon-plus class="icon"></b-icon-plus>Suas Postagens
           </b-nav-item>
-          <template v-if="authenticated">
+          <container v-if="authenticated">
             <b-nav-item-dropdown right >
               <template #button-content>
                 <em class="text-light">
@@ -25,12 +21,12 @@
               <b-dropdown-item to="perfil">Profile</b-dropdown-item>
               <b-dropdown-item @click="logout()">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
-          </template>
-          <template v-else>
-            <b-nav-item v-b-modal.login>
+          </container>
+          <container v-else>
+            <b-nav-item v-b-modal.loginModal>
               Fazer Login
             </b-nav-item>
-            <b-modal id="login" :title="signupInModal? 'Cadastro': 'login'" ref="loginModal" hide-footer>
+            <b-modal id="loginModal" :title="signupInModal? 'Cadastro': 'login'" ref="loginModal" hide-footer>
               <b-form v-if="!signupInModal" @submit.prevent="login()">
                 <b-form-group
                   id="input-group-1"
@@ -138,7 +134,7 @@
                 </div>
               </b-form>
             </b-modal>
-          </template>
+          </container>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -163,17 +159,16 @@ export default {
         birthDate: '',
         phone: '',
         password: '',
-        type: 'user'
+        role: 'viewer'
       }
     }
   },
   computed: {
     ...mapGetters('auth', ['authenticated', 'userAuthenticated']),
-    isAdmin(){
-      if(this.authenticated && this.userAuthenticated.type == 'admin')
-        return true
-      else
-        return false
+    userRole() {
+      if (this.authenticated){
+        return this.userAuthenticated.role
+      } else return null
     }
   },
   methods: {
@@ -198,7 +193,7 @@ export default {
     },
     logout(){
       this.signOut()
-      this.$router.push({ path: '/' })
+      this.$router.push('/').catch(()=>{});
     },
     register(){
       this.signUp(this.formSignup).then(
