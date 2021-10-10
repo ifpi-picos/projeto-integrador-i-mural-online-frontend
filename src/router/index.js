@@ -6,28 +6,33 @@ Vue.use(VueRouter)
 const routes = [
 	{
 		path: '/',
-		name: 'Home',
 		component: () => import('@/layout/LayoutDefault.vue'),
 		children: [
 			{
 				path: '',
-				component: () => import('../views/Home.vue'),
+				name: 'Home',
+				component: () => import('@/views/Home.vue'),
 			},
 			{
 				path: 'postagens',
+				beforeEnter: guard.publisher,
+				component: () => import('@/views/Posts.vue'),
+			},
+			{
+				path: 'admin',
 				beforeEnter: guard.admin,
-				component: () => import('../views/Posts.vue'),
+				component: () => import('@/views/Admin.vue'),
 			},
 			{
 				path: 'perfil',
 				beforeEnter: guard.auth,
-				component: () => import('../views/Profile.vue'),
+				component: () => import('@/views/Profile.vue'),
 			},
 		]
 	},
 	{
 		path: '*',
-		component: ()=>import('../components/PageNotFound.vue')
+		component: ()=>import('@/components/PageNotFound.vue')
 	}
 ]
 

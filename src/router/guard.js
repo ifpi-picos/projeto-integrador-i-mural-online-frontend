@@ -5,10 +5,17 @@ const guard = {
 		if (logged) next()
 		else next('/')
 	},
+	publisher: (to, from, next) => {
+		const user = store.getters['auth/userAuthenticated']
+		if (user != {}) {
+			if (user.role == 'publisher') next()
+			else next('/')
+		} else next('/')
+	},
 	admin: (to, from, next) => {
 		const user = store.getters['auth/userAuthenticated']
 		if (user != {}) {
-			if (user.type == 'admin') next()
+			if (user.role == 'admin') next()
 			else next('/')
 		} else next('/')
 	},
