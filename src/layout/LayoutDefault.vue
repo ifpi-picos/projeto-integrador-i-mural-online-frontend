@@ -11,18 +11,21 @@
           <b-nav-item v-if="userRole && userRole == 'publisher'" to="Postagens">
             <b-icon-plus class="icon"></b-icon-plus>Suas Postagens
           </b-nav-item>
-          <container v-if="authenticated">
+          <b-nav-item v-if="userRole && userRole == 'admin'" to="Admin">
+            <b-icon-person-badge class="icon"></b-icon-person-badge> Painel de Administrador
+          </b-nav-item>
+          <slot v-if="authenticated">
             <b-nav-item-dropdown right >
               <template #button-content>
                 <em class="text-light">
-                  <b-icon-person-circle class="icon"></b-icon-person-circle>{{ userAuthenticated.email }}
+                  <b-icon-person-circle class="icon"></b-icon-person-circle> {{ userAuthenticated.email }}
                 </em>
               </template>
               <b-dropdown-item to="perfil">Profile</b-dropdown-item>
               <b-dropdown-item @click="logout()">Sign Out</b-dropdown-item>
             </b-nav-item-dropdown>
-          </container>
-          <container v-else>
+          </slot>
+          <slot v-else>
             <b-nav-item v-b-modal.loginModal>
               Fazer Login
             </b-nav-item>
@@ -134,7 +137,7 @@
                 </div>
               </b-form>
             </b-modal>
-          </container>
+          </slot>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -159,7 +162,6 @@ export default {
         birthDate: '',
         phone: '',
         password: '',
-        role: 'viewer'
       }
     }
   },
