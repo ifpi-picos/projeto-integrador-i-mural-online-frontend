@@ -1,10 +1,15 @@
 <template>
-  <div>
+  <b-container class="users text-center">
     <h1>Lista de Usuários</h1>
-    <div v-for="(user, index) in userList" :key="index" class="user">
-      <label>{{user.firstName +' '+ user.lastName}}</label>
+    <div v-for="(user, index) in userList" :key="index" class="user d-flex justify-content-around">
+      <label class="col-7">{{user.firstName +' '+ user.lastName}}</label>
+      <select class="col-5" :value="user.role" @change="(e)=>{updateRole(user.id, e.target.value)}">
+        <option value="viewer">viewer</option> 
+        <option value="publisher">publisher</option> 
+        <option value="admin">admin</option> 
+      </select>
     </div>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -24,48 +29,38 @@ export default {
     this.getUserList()
   },
   methods: {
-    autoResize(e) {
-      const textarea = e.target;
-      textarea.style.height = 'auto';
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    },
     getUserList(){
       axios.get(`users/`).then(
         resp=>{
-          this.userList = resp.data
+          this.userList = resp.data.filter(user => user.id !== this.userAuthenticated.id)
         },
         error=>{
           console.log({ ...error })
         }
       )
     },
-    createNotice(){
-      axios.post('notices', this.formCreateNotice).then(
-        () => {
-          alert('postagem cadastrada com sucesso!')
-          this.getNoticeList(this.userAuthenticated.id)
-        },
-        error => {
-          console.log({...error})
-        }
-      )
-    },
-    changeUserType(id, type){
-      axios.put(`users/${id}`, { type }).then(
-        () => {
-          alert('postagem atualizada com sucesso!')
-          this.getNoticeList(this.userAuthenticated.id)
-        },
-        error => {
-          console.log({...error})
-        }
-      )
+    updateRole(id, role){
+      axios.put(`users/role/${id}?role=${role}`)
+        .catch(error=>{
+          console.log(error)
+          alert('Ocorreu um erro inesperado ao mudar a função deste usuário')
+        })
     },
   },
 }
 </script>
 <style scoped>
 .user {
-  border: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.user select {
+  background: transparent;
+  border: none;
+  border-left: 1px solid rgba(0,0,0,0.1);
+  outline: none;
+  text-align: center;
+} 
+.user select:hover {
+  cursor: pointer;
 }
 </style>
