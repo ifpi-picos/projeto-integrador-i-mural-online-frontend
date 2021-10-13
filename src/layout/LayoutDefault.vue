@@ -39,9 +39,8 @@
                   <b-form-input
                     id="email"
                     v-model="formSignin.email"
-                    type="email"
-                    placeholder="Enter email"
-                    required
+                    type="text"
+                    placeholder="Digite Seu Email"
                   ></b-form-input>
                 </b-form-group>
 
@@ -49,13 +48,12 @@
                   <b-form-input
                     id="password"
                     v-model="formSignin.password"
-                    placeholder="Sua senha"
+                    placeholder="Digite a Sua senha"
                     type="password"
-                    required
                   ></b-form-input>
                 </b-form-group>
                 <b-form-group class="text-center">
-                  <b-button type="submit" variant="primary">Submit</b-button>
+                  <b-button type="submit" variant="primary">Login</b-button>
                 </b-form-group>
                 <div class="text-center">
                   <b-link @click="signupInModal = !signupInModal">ainda não é um usuário? clique aqui para se cadastrar</b-link>
@@ -63,7 +61,7 @@
               </b-form>
               <b-form v-if="signupInModal" @submit.prevent="register()">
                 <b-form-group
-                  label="Primeiro Nome"
+                  label="Primeiro Nome: *"
                   label-for="firstName"
                 >
                   <b-form-input
@@ -75,7 +73,7 @@
                   ></b-form-input>
                 </b-form-group>
                 <b-form-group
-                  label="Ultimo Nome"
+                  label="Ultimo Nome: *"
                   label-for="lastName"
                 >
                   <b-form-input
@@ -83,34 +81,32 @@
                     v-model="formSignup.lastName"
                     type="text"
                     placeholder="Ultimo Nome"
-                    required
                   ></b-form-input>
                 </b-form-group>
                 <b-form-group
                   id="input-group-1"
-                  label="Email:"
+                  label="Email: *"
                   label-for="email"
                 >
                   <b-form-input
                     id="email"
                     v-model="formSignup.email"
-                    type="email"
+                    type="text"
                     placeholder="Email"
                     required
                   ></b-form-input>
                 </b-form-group>
 
-                <b-form-group label="Data de Nasciento" label-for="birthDate">
+                <b-form-group label="Data de Nasciento: *" label-for="birthDate">
                   <b-form-input
                     id="birthDate"
                     type="date"
                     v-model="formSignup.birthDate"
                     placeholder="Data de Nascimento"
-                    required
                   ></b-form-input>
                 </b-form-group>
 
-                <b-form-group label="Telefone" label-for="phone">
+                <b-form-group label="Telefone: *" label-for="phone">
                   <b-form-input
                     id="phone"
                     v-model="formSignup.phone"
@@ -118,17 +114,16 @@
                   ></b-form-input>
                 </b-form-group>
 
-                <b-form-group label="Senha:" label-for="password">
+                <b-form-group label="Senha: *" label-for="password">
                   <b-form-input
                     id="password"
                     v-model="formSignup.password"
                     placeholder="Sua senha"
                     type="password"
-                    required
                   ></b-form-input>
                 </b-form-group>
                 <b-form-group class="text-center">
-                  <b-button type="submit" variant="primary">Submit</b-button>
+                  <b-button type="submit" variant="primary">Cadastrar</b-button>
                 </b-form-group>
                 <div class="text-center">
                   <b-link @click="signupInModal = !signupInModal">
@@ -179,6 +174,15 @@ export default {
       this.$refs.loginModal.hide()
     },
     login(){
+      if (this.formSignin.email === ''){
+        alert("Você Deve Preencher o Campo Email")
+      } else
+      if (this.formSignin.email.indexOf('@') === -1){
+        alert("Coloque Um Email Valido")
+      } else
+      if(this.formSignin.password ===''){
+        alert("Você deve Preencher o Campo Senha")
+      } else
       this.signIn(this.formSignin).then(
         ()=>{
           alert('usuário logado')
@@ -198,6 +202,41 @@ export default {
       this.$router.push('/').catch(()=>{});
     },
     register(){
+      if (this.formSignup.firstName ===''){
+        alert("Por Favor Preencha o Campo Nome")
+      } else
+
+       if (this.formSignup.lastName ===''){
+        alert("Por Favor Preencha o Campo Ultimo Nome")
+      } else
+
+       if (this.formSignup.email===''){
+        alert("Por Favor Preencha o Campo Email")
+      } else
+
+      if (this.formSignup.email.indexOf('@') === -1){
+        alert("Por Favor Coloque um Email Valido")
+      } else
+
+      if (this.formSignup.birthDate === ''){
+        alert("Por favor Preencha o Campo Data de Aniversario");
+      } else
+
+      if (this.formSignup.birthDate > new Date().toLocaleDateString() ){
+       alert("Data invalida")
+      } else
+
+      if (this.formSignup.phone ===''){
+        alert("Por Favor Preencha o Campo Telefone")
+      } else
+
+      if (this.formSignup.password ===''){
+        alert("Por Favor Preencha o Campo Senha")
+      } else
+
+      if (this.formSignup.password.length < 6){
+        alert("A Sua Senha Deve Ter no Minimo 6 Caracteres")
+      } else
       this.signUp(this.formSignup).then(
         () => {
           alert('usuário cadastrado, agora faça login')
