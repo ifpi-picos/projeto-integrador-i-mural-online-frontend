@@ -93,19 +93,37 @@ export default {
       const uid = this.userAuthenticated.id
       axios.put(`users/${uid}`, this.updateForm).then(
         () => {
-          alert('perfil atualizado')
+          this.$swal({
+            text: 'Perfil atualizado',
+            icon: 'sucess',
+            confirmButtonText: 'Ok'
+          })
         },
         error=>{
           console.log({...error})
           const code = error.response.status
-          if(code === 409 )
-            alert('usuario não encontrado')
-          if(code === 400 )
-            alert('Dados Invalidos')
-          if(code === 500 )
-            alert('Erro no servidor')
-        }
-      )
+          if(code === 409 ){
+            this.$swal({
+              text: 'Usuário não encontrado',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
+          }
+          if(code === 400 ){
+            this.$swal({
+            text: 'Dados Invalidos',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+            })
+          }
+          if(code === 500 ){
+            this.$swal({
+            text: 'Erro no servidor',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+            })
+          }
+      } ) 
     }
   }
 }

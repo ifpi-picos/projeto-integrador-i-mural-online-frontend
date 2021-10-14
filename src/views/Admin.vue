@@ -43,7 +43,11 @@ export default {
       axios.put(`users/role/${id}?role=${role}`)
         .catch(error=>{
           console.log(error)
-          alert('Ocorreu um erro inesperado ao mudar a função deste usuário')
+          this.$swal({
+            text: 'Ocorreu um erro inesperado ao mudar a função deste usuário',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
         })
     },
   },

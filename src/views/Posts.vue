@@ -133,7 +133,11 @@ export default {
     createNotice(){
       axios.post('notices', this.formCreateNotice).then(
         () => {
-          alert('postagem cadastrada com sucesso!')
+          this.$swal({
+            text: 'postagem cadastrada com sucesso!',
+            icon: 'sucess',
+            confirmButtonText: 'Ok'
+          })
           this.getNoticeList(this.userAuthenticated.id)
         },
         error => {
@@ -144,7 +148,11 @@ export default {
     updateNotice(){
       axios.put(`notices/${this.noticeIdToEdit}`, this.formUpdateNotice).then(
         () => {
-          alert('postagem atualizada com sucesso!')
+          this.$swal({
+            text: 'Postagem atualizada com sucesso!',
+            icon: 'sucess',
+            confirmButtonText: 'Ok'
+          })
           this.getNoticeList(this.userAuthenticated.id)
         },
         error => {
@@ -155,7 +163,11 @@ export default {
     deleteNotice(id){
       axios.delete(`notices/${id}`).then(
         ()=>{
-          alert('noticia deletada com sucesso!')
+          this.$swal({
+            text: 'Notícia deletada com sucesso!',
+            icon: 'sucess',
+            confirmButtonText: 'Ok'
+          })
           this.getNoticeList(this.userAuthenticated.id)
         },
         error=>{

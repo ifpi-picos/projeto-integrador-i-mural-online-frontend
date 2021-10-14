@@ -175,25 +175,52 @@ export default {
     },
     login(){
       if (this.formSignin.email === ''){
-        alert("Você Deve Preencher o Campo Email")
+        this.$swal({
+          text: 'Preencha o campo Email',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       } else
       if (this.formSignin.email.indexOf('@') === -1){
-        alert("Coloque Um Email Valido")
+        this.$swal({
+          text: 'Utilize um email válido',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       } else
       if(this.formSignin.password ===''){
-        alert("Você deve Preencher o Campo Senha")
+        this.$swal({
+          text: 'Preencha o campo senha',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       } else
       this.signIn(this.formSignin).then(
         ()=>{
-          alert('usuário logado')
+          this.$swal({
+            titel: 'Usuário logado',
+            text: 'Login realizado com sucesso',
+            icon: 'sucess',
+            timer: '1700'     
+            })
         },
         error=>{
           const message = error.response.data.message
           console.log({...error})
           if(message == 'password incorrect')
-            alert('Senha Incorreta')
+            this.$swal({
+              titel: 'Senha Incorreta',
+              text: 'Insira a senha correta',
+              icon: 'error',
+              timer: '1500'     
+            })
           if(message == 'User with email not found')
-            alert('Usuário não encontrado')
+            this.$swal({
+              text: 'Usuário não cadastrado',
+              icon: 'error',
+              confirmButtonText: 'Ok',
+              timer: '2000'     
+            })
         }
       )
     },
@@ -203,50 +230,94 @@ export default {
     },
     register(){
       if (this.formSignup.firstName ===''){
-        alert("Por Favor Preencha o Campo Nome")
+        this.$swal({
+          text: 'Por Favor Preencha o Campo Nome',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       } else
 
        if (this.formSignup.lastName ===''){
-        alert("Por Favor Preencha o Campo Ultimo Nome")
+        this.$swal({
+          text: 'Por Favor Preencha o Campo Ultimo Nome',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       } else
 
        if (this.formSignup.email===''){
-        alert("Por Favor Preencha o Campo Email")
+        this.$swal({
+          text: 'Por Favor Preencha o Campo Email',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       } else
 
       if (this.formSignup.email.indexOf('@') === -1){
-        alert("Por Favor Coloque um Email Valido")
+        this.$swal({
+          text: 'Por Favor Coloque um Email Valido',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       } else
 
       if (this.formSignup.birthDate === ''){
-        alert("Por favor Preencha o Campo Data de Aniversario");
+        this.$swal({
+          text: 'Por favor Preencha o Campo Data de Aniversario',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       } else
 
       if (this.formSignup.birthDate > new Date().toLocaleDateString() ){
-       alert("Data invalida")
+      this.$swal({
+          text: 'Data invalida',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       } else
 
       if (this.formSignup.phone ===''){
-        alert("Por Favor Preencha o Campo Telefone")
+        this.$swal({
+          text: 'Por Favor Preencha o Campo Telefone',
+          icon: 'info',
+          confirmButtonText: 'Ok'
+        })
       } else
 
       if (this.formSignup.password ===''){
-        alert("Por Favor Preencha o Campo Senha")
+        this.$swal({
+          text: 'Por Favor Preencha o Campo Senha',
+          icon: 'info',
+          confirmButtonText: 'Ok'
+        })
       } else
 
       if (this.formSignup.password.length < 6){
-        alert("A Sua Senha Deve Ter no Minimo 6 Caracteres")
+        this.$swal({
+          text: 'A Sua Senha Deve Ter no Minimo 6 Caracteres',
+          icon: 'info',
+          confirmButtonText: 'Ok'
+        })
       } else
       this.signUp(this.formSignup).then(
         () => {
-          alert('usuário cadastrado, agora faça login')
+          this.$swal({
+            text: 'Login realizado com sucesso',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
           this.signupInModal = false
         },
         error=>{
           console.log({...error})
           const code = error.response.status
           if(code === 409 )
-            alert('Este email ja está em uso')
+            this.$swal({
+            text: 'Este email ja está em uso',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
           if(code === 400 )
             alert('Dados Invalidos')
           if(code === 500 )
