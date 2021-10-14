@@ -69,7 +69,6 @@
                     v-model="formSignup.firstName"
                     type="text"
                     placeholder="Primeiro Nome"
-                    required
                   ></b-form-input>
                 </b-form-group>
                 <b-form-group
@@ -93,11 +92,10 @@
                     v-model="formSignup.email"
                     type="text"
                     placeholder="Email"
-                    required
                   ></b-form-input>
                 </b-form-group>
 
-                <b-form-group label="Data de Nasciento: *" label-for="birthDate">
+                <b-form-group label="Data de Nascimento: *" label-for="birthDate">
                   <b-form-input
                     id="birthDate"
                     type="date"
@@ -269,14 +267,6 @@ export default {
         })
       } else
 
-      if (this.formSignup.birthDate > new Date().toLocaleDateString() ){
-      this.$swal({
-          text: 'Data invalida',
-          icon: 'error',
-          confirmButtonText: 'Ok'
-        })
-      } else
-
       if (this.formSignup.phone ===''){
         this.$swal({
           text: 'Por Favor Preencha o Campo Telefone',
@@ -293,7 +283,7 @@ export default {
         })
       } else
 
-      if (this.formSignup.password.length < 6){
+      if (this.formSignup.password.length < 7){
         this.$swal({
           text: 'A Sua Senha Deve Ter no Minimo 6 Caracteres',
           icon: 'info',
