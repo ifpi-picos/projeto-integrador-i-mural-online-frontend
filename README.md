@@ -1,14 +1,15 @@
-# Projeto > Mural Virtual
+# Projeto > Mural Virtual > Frontend
 
 > :heavy_exclamation_mark: **OBS**: Este repositório contempla a penas o Frontend, para execução deste faz-se necessário que o backend esteja instalado e rodando.
 
 ## Índice
+
 [Sobre o projeto](#sobre) | [Funcionalidades](#func) | [Layout](#layout) | [Organização](#organizacao) | [Pré-Requisitos](#prerequisitos) | [Instalação](#instalacao) | [Config Gitflow](#configgitflow) | [Tecnologias](#tecnologias) | [Ferramentas](#ferramentas) | [Deploy da Aplicação](#deploy)
 
 ## :computer: Sobre o projeto <a name="sobre"></a>
 O projeto **Mural Virtual** é uma aplicação de autoria dos alunos do curso de Análise e Desenvolvimento de sistemas do Instituto Federal do Piauí - Campus Picos.
 
-Esse projeto foi criado como partes das disciplinas de Engenharia de software, Programação Web I e II e agora está sendo utilizado e mantido na disciplina de projeto integrador I.
+Esse projeto foi criado como partes das disciplinas de **Engenharia de software**, **Programação Web I e II** e agora está sendo utilizado e mantido na disciplina de projeto **integrador I** do professor **Jesiel Viana**.
 
 A sua principal função é permitir a criação de noticias sobre o campus e reunir tais noticiais em um só lugar, para acesso de todos.
 
@@ -19,7 +20,7 @@ A sua principal função é permitir a criação de noticias sobre o campus e re
 - [x] Login
 - [x] Logout
 - [ ] Recuperação de senha **(Em updates futuros)**
-- [ ] Validação dos campos de login e senha **(Em updates futuros)**
+- [x] Validação dos campos de login e senha 
 
 ### :pushpin: Postagem
 - [x] Criação
@@ -27,34 +28,35 @@ A sua principal função é permitir a criação de noticias sobre o campus e re
 - [x] Deleção
 
 ### :heavy_check_mark: Usabilidade
-- [ ] Painel administrativo **(Em updates futuros)**
+- [x] Painel administrativo 
 - [ ] Barra de pesquisa de postagens **(Em updates futuros)**
 - [ ] Filtragem de notícias por categoria **(Em updates futuros)**
 
 ## :art: Layout <a name="layout"></a>
 
-### Tela principal da aplicação
-[![Captura-de-tela-de-2021-09-07-15-25-52.png](https://i.postimg.cc/0NbLcDYL/Captura-de-tela-de-2021-09-07-15-25-52.png)](https://postimg.cc/QBZ4MBnb)
+## :lock: Login 
+
+![Login](https://user-images.githubusercontent.com/53342708/137370285-919cf104-b445-4c71-8842-074bedea6a88.gif)
 
 
-### Tela de Cadastro
-[![cadastro.png](https://i.postimg.cc/jjZGhvn6/cadastro.png)](https://postimg.cc/HJ8ZYw2j)
+## :unlock: Logout
+![Logout](https://user-images.githubusercontent.com/53342708/137370604-0fae3e9f-67f5-4658-a20f-1a46155079c9.gif)
 
 
-### Tela de Login
-[![login.png](https://i.postimg.cc/Jn7Hf7nV/login.png)](https://postimg.cc/f3FbXNmB)
+## :busts_in_silhouette: Cadastro Usuário
+![Cadastro-Usuário](https://user-images.githubusercontent.com/53342708/137373926-83bf73b9-69e2-4a97-ac7c-f37a304f5b4a.gif)
 
 
-### Tela de postagens
-[![Captura-de-tela-de-2021-09-18-16-58-06.png](https://i.postimg.cc/dtJQnNLp/Captura-de-tela-de-2021-09-18-16-58-06.png)](https://postimg.cc/s10RgcP4)
+## :pencil:  Cadastro de Postagem
+![Criar Noticia](https://user-images.githubusercontent.com/53342708/137370851-b720a2d4-af86-49d8-b920-e044842756e1.gif)
 
 
-### Tela de cadastro de postagens
-[![Captura-de-tela-de-2021-09-18-16-58-47.png](https://i.postimg.cc/15WSBmxV/Captura-de-tela-de-2021-09-18-16-58-47.png)](https://postimg.cc/BX1RQGnJ)
+## :ballot_box_with_check: Atualizar Postagem
+![Atualizar Postagem](https://user-images.githubusercontent.com/53342708/137374082-d08cb0a0-1bae-49aa-a7aa-5e900b427895.gif)
 
 
-### Tela de atualização de postagem
-[![Captura-de-tela-de-2021-09-18-16-59-35.png](https://i.postimg.cc/V6cc2kWf/Captura-de-tela-de-2021-09-18-16-59-35.png)](https://postimg.cc/2qTJZmtM)
+## :negative_squared_cross_mark: Deletar Postagem
+![Deletar Noticia](https://user-images.githubusercontent.com/53342708/137374237-dd8f9b3b-d655-45b0-a97e-c3b1a02a64d4.gif)
 
 
 
@@ -127,7 +129,7 @@ sudo dnf install gitflow
 ```
 git flow init -d
 ```
-esse comando serve para criar toda a estrutura e configurações sem que precise confirmar nada.
+>esse comando serve para criar toda a estrutura e configurações sem que precise confirmar nada.
 
 **Dica:**
 >Use sempre a branch **developer** nela está todas as ultimas atualizações feitas.
@@ -155,3 +157,12 @@ A aplicação já está no ar no seguinte link:
 
 
 [![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=432758&assignment_repo_type=GroupAssignmentRepo)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMjEyNjUxNzMyNSwxNTMwOTM0NDc3LC0yMT
+A1MDc3NzkzLC00NzAzMDY5MTEsMTgzMzUwNjg5MSwtODY4MzY3
+Njk3LC0xMjM3NTU3ODczLC0xODU5NTk3MzQzLDE5Mzg5NjAzMT
+AsLTE4MzcyODM2MzksLTExMjEzMDcwNjIsMTM1NDcxODU4NSwt
+MjkxNjUwMjksLTEyNDk2ODc4NjAsMTE2MDc3MDIzMSwtMTgwOD
+MwMjU5MiwtMjQ4NTU3NTExLDIyMjkyNzMyNSwtMTIxNTE3Mjgy
+MV19
+-->
