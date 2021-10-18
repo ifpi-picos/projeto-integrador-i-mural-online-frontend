@@ -225,6 +225,7 @@ export default {
     logout(){
       this.signOut()
       this.$router.push('/').catch(()=>{});
+      window.location.reload()
     },
     register(){
       if (this.formSignup.firstName ===''){
