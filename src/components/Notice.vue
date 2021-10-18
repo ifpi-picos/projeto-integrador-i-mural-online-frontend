@@ -3,7 +3,7 @@
     <fa-icon icon="thumbtack" id="pin"></fa-icon>
     <div class="card py-2">
       <div>
-        <p class="card-title">{{title}}</p>
+        <p class="card-title">{{title}} ({{category}})</p>
         <p class="card-text">{{description}}</p>
       </div>
       <div class="options" v-if="!disabled">
@@ -39,6 +39,10 @@ export default {
     },
     description: {
       type: String,
+      default: ''
+    },
+    category: {
+      type:String,
       default: ''
     }
   },

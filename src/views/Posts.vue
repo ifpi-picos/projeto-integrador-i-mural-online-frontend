@@ -19,6 +19,10 @@
             @input="autoResize"
             required
           ></textarea>
+          <b-form-select class="input ocult" v-model="formCreateNotice.category" :options="categories">
+      
+          </b-form-select>
+
           <div class="ocult">
             <div class="d-flex justify-content-end">
               <button @click.prevent="createNotice()">
@@ -34,6 +38,7 @@
         <Notice 
           editable
           :title="notice.title" 
+          :category="notice.category" 
           :description="notice.description"
           :id="notice.id"
           @delete="deleteNotice(notice.id)"
@@ -86,23 +91,27 @@
 <script>
 import axios from '../services/axios'
 import { mapGetters } from 'vuex'
+import { categories } from '@/assets/Categories.json'
 import Notice from '@/components/Notice.vue'
 export default {
   name: 'posts',
-  components: { Notice },
+  components: {Notice },
   data(){
     return {
+      categories,
       noticeIdToEdit: null,
       noticeList: [],
       formCreateNotice: {
         userId: '',
         title: '',
         description: '',
+        category: '',
       },
       formUpdateNotice: {
         userId: '',
         title: '',
         description: '',
+        category: '',
       }
     }
   },
@@ -113,6 +122,7 @@ export default {
     const uid = this.userAuthenticated.id
     this.formCreateNotice.userId = uid
     this.getNoticeList(uid)
+    console.log(categories)
   },
   methods: {
     autoResize(e) {
@@ -137,7 +147,9 @@ export default {
             text: 'postagem cadastrada com sucesso!',
             icon: 'sucess',
             confirmButtonText: 'Ok'
-          })
+          }) 
+          this.formCreateNotice.title = "";
+          this.formCreateNotice.description = "";
           this.getNoticeList(this.userAuthenticated.id)
         },
         error => {
