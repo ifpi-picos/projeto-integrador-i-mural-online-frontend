@@ -14,7 +14,7 @@ export default {
 <style>
 #app {
   background-color:#00FA9A;
-  height: 100vh !important;
+  min-height: 100vh !important;
   font-family: 'Roboto', monospace;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
