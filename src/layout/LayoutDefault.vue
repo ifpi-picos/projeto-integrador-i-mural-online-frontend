@@ -174,6 +174,7 @@ export default {
     login(){
       if (this.formSignin.email === ''){
         this.$swal({
+          title: 'Atenção!',
           text: 'Preencha o campo Email',
           icon: 'error',
           confirmButtonText: 'Ok'
@@ -181,13 +182,15 @@ export default {
       } else
       if (this.formSignin.email.indexOf('@') === -1){
         this.$swal({
-          text: 'Utilize um email válido',
+          title: 'Ops...',
+          text: 'O email deve conter @',
           icon: 'error',
           confirmButtonText: 'Ok'
         })
       } else
       if(this.formSignin.password ===''){
         this.$swal({
+          title: 'Atenção',
           text: 'Preencha o campo senha',
           icon: 'error',
           confirmButtonText: 'Ok'
@@ -196,7 +199,7 @@ export default {
       this.signIn(this.formSignin).then(
         ()=>{
           this.$swal({
-            titel: 'Usuário logado',
+            title: 'Tudo certo',
             text: 'Login realizado com sucesso',
             icon: 'sucess',
             timer: '1700'     
@@ -207,17 +210,17 @@ export default {
           console.log({...error})
           if(message == 'password incorrect')
             this.$swal({
-              titel: 'Senha Incorreta',
+              title: 'Ops...',
               text: 'Insira a senha correta',
               icon: 'error',
-              timer: '1500'     
+              timer: '1800'     
             })
           if(message == 'User with email not found')
             this.$swal({
-              text: 'Usuário não cadastrado',
+              title: 'Email não encontrado',
+              text: 'Usuário não cadastrado no sistema',
               icon: 'error',
-              confirmButtonText: 'Ok',
-              timer: '2000'     
+              timer: '2700'     
             })
         }
       )
@@ -230,6 +233,7 @@ export default {
     register(){
       if (this.formSignup.firstName ===''){
         this.$swal({
+          title: 'Atenção!',
           text: 'Por Favor Preencha o Campo Nome',
           icon: 'error',
           confirmButtonText: 'Ok'
@@ -238,6 +242,7 @@ export default {
 
        if (this.formSignup.lastName ===''){
         this.$swal({
+          title: 'Atenção!',
           text: 'Por Favor Preencha o Campo Ultimo Nome',
           icon: 'error',
           confirmButtonText: 'Ok'
@@ -246,6 +251,7 @@ export default {
 
        if (this.formSignup.email===''){
         this.$swal({
+          title: 'Atenção!',
           text: 'Por Favor Preencha o Campo Email',
           icon: 'error',
           confirmButtonText: 'Ok'
@@ -254,6 +260,7 @@ export default {
 
       if (this.formSignup.email.indexOf('@') === -1){
         this.$swal({
+          title: 'Erro',
           text: 'Por Favor Coloque um Email Valido',
           icon: 'error',
           confirmButtonText: 'Ok'
@@ -262,6 +269,7 @@ export default {
 
       if (this.formSignup.birthDate === ''){
         this.$swal({
+          title: 'Atenção!',
           text: 'Por favor Preencha o Campo Data de Aniversario',
           icon: 'error',
           confirmButtonText: 'Ok'
@@ -270,6 +278,7 @@ export default {
 
       if (this.formSignup.phone ===''){
         this.$swal({
+          title: 'Atenção!',
           text: 'Por Favor Preencha o Campo Telefone',
           icon: 'info',
           confirmButtonText: 'Ok'
@@ -278,6 +287,7 @@ export default {
 
       if (this.formSignup.password ===''){
         this.$swal({
+          title: 'Atenção!',
           text: 'Por Favor Preencha o Campo Senha',
           icon: 'info',
           confirmButtonText: 'Ok'
@@ -286,6 +296,7 @@ export default {
 
       if (this.formSignup.password.length < 7){
         this.$swal({
+          title: 'Atenção!',
           text: 'A Sua Senha Deve Ter no Minimo 6 Caracteres',
           icon: 'info',
           confirmButtonText: 'Ok'
@@ -294,7 +305,8 @@ export default {
       this.signUp(this.formSignup).then(
         () => {
           this.$swal({
-            text: 'Login realizado com sucesso',
+            title: 'Tudo certo!',
+            text: 'Cadastro realizado com sucesso',
             icon: 'success',
             confirmButtonText: 'Ok'
           })
@@ -305,14 +317,26 @@ export default {
           const code = error.response.status
           if(code === 409 )
             this.$swal({
+            title: 'Erro',
             text: 'Este email ja está em uso',
             icon: 'warning',
             confirmButtonText: 'Ok'
           })
           if(code === 400 )
-            alert('Dados Invalidos')
+            this.$swal({
+            title: 'Dados Inválidos',
+            text: 'Utilize daddos Válidos',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
           if(code === 500 )
-            alert('Erro no servidor')
+            this.$swal({
+            title: 'Erro no servidor',
+            text: 'Servidor foi pra vala',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
+          
         }
       )
     }

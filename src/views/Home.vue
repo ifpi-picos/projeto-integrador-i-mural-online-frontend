@@ -10,6 +10,7 @@
        ></b-form-input>
 
        <b-form-select
+          size="sm"
           class="ml-2 mt-2"
           :options="categories"
           v-model="searchCategory"
