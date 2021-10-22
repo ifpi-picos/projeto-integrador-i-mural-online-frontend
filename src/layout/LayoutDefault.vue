@@ -182,7 +182,7 @@ export default {
       } else
       if (this.formSignin.email.indexOf('@') === -1){
         this.$swal({
-          title: 'Ops...',
+          title: '',
           text: 'O email deve conter @',
           icon: 'error',
           confirmButtonText: 'Ok'
@@ -226,9 +226,26 @@ export default {
       )
     },
     logout(){
-      this.signOut()
-      this.$router.push('/').catch(()=>{});
-      window.location.reload()
+      //this.signOut()
+      this.$swal({
+        title: 'Sair',
+        text: 'Deseja sair da aplicação?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, Quero sair!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          (
+            this.signOut(),
+            this.$router.push('/').catch(()=>{}),
+            window.location.reload()
+          )
+        }
+      })
+      //this.$router.push('/').catch(()=>{});
+      //window.location.reload()
     },
     register(){
       if (this.formSignup.firstName ===''){
@@ -325,7 +342,7 @@ export default {
           if(code === 400 )
             this.$swal({
             title: 'Dados Inválidos',
-            text: 'Utilize daddos Válidos',
+            text: 'Utilize dados Válidos',
             icon: 'warning',
             confirmButtonText: 'Ok'
           })

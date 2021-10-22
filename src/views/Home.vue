@@ -16,8 +16,8 @@
           v-model="searchCategory"
           > <option disabled value=""> Escolha uma categoria</option>  </b-form-select>
 
-       <b-button size="sm" class="mt-2 ml-2" title="Limpar" v-b-tooltip.hover @click="LimparFiltro">
-        <b-icon-trash></b-icon-trash>
+       <b-button size="sm" class="mt-2 ml-2 btn-danger btn-sm" title="Limpar" btnv-b-tooltip.hover @click="LimparFiltro">
+        <b-icon-brush></b-icon-brush>
        </b-button>
 
         </b-nav-form>

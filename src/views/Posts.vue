@@ -225,7 +225,6 @@ export default {
 }
 #form-notice button {
   background-color: transparent;
-  /* background-color: rgba(0,0,0,.4); */
   border: none;
   border-radius: 50%;
 }

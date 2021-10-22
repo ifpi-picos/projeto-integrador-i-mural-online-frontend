@@ -89,6 +89,7 @@ export default {
       axios.put(`users/${uid}`, this.updateForm).then(
         () => {
           this.$swal({
+            title: 'Feito',
             text: "Perfil atualizado",
             icon: "sucess",
             confirmButtonText: "Ok",
@@ -99,6 +100,7 @@ export default {
           const code = error.response.status;
           if (code === 409) {
             this.$swal({
+              title: 'Erro',
               text: "Usuário não encontrado",
               icon: "error",
               confirmButtonText: "Ok",
@@ -106,14 +108,16 @@ export default {
           }
           if (code === 400) {
             this.$swal({
-              text: "Dados Invalidos",
+              title: 'Dados Inválidos',
+              text: "Forneca dados válidos",
               icon: "error",
               confirmButtonText: "Ok",
             });
           }
           if (code === 500) {
             this.$swal({
-              text: "Erro no servidor",
+              title: 'Erro no servidor',
+              text: "Servidor foi pra vala",
               icon: "error",
               confirmButtonText: "Ok",
             });
