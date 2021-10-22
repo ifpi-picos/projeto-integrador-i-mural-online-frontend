@@ -144,9 +144,9 @@ export default {
       axios.post('notices', this.formCreateNotice).then(
         () => {
           this.$swal({
-            text: 'postagem cadastrada com sucesso!',
+            text: 'Postagem cadastrada com sucesso!',
             icon: 'sucess',
-            confirmButtonText: 'Ok'
+            timer: '1900'
           }) 
           this.formCreateNotice.title = "";
           this.formCreateNotice.description = "";
@@ -176,9 +176,10 @@ export default {
       axios.delete(`notices/${id}`).then(
         ()=>{
           this.$swal({
-            text: 'Notícia deletada com sucesso!',
+            title: 'Sucesso',
+            text: 'Noticia deletada com sucesso',
             icon: 'sucess',
-            confirmButtonText: 'Ok'
+            timer: '1800'
           })
           this.getNoticeList(this.userAuthenticated.id)
         },

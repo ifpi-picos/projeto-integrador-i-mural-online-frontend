@@ -226,13 +226,11 @@ export default {
       )
     },
     logout(){
-      //this.signOut()
       this.$swal({
         title: 'Sair',
         text: 'Deseja sair da aplicação?',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sim, Quero sair!'
       }).then((result) => {
@@ -244,8 +242,7 @@ export default {
           )
         }
       })
-      //this.$router.push('/').catch(()=>{});
-      //window.location.reload()
+  
     },
     register(){
       if (this.formSignup.firstName ===''){

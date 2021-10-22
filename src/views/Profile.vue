@@ -92,7 +92,7 @@ export default {
             title: 'Feito',
             text: "Perfil atualizado",
             icon: "sucess",
-            confirmButtonText: "Ok",
+            timer: '1800',
           });
         },
         (error) => {

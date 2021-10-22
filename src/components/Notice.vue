@@ -8,15 +8,15 @@
       </div>
       <div class="options" v-if="!disabled">
         <template v-if="editable">
-          <button @click="updateN" v-b-modal.updateNoticeModal>
-            <b-icon-pencil></b-icon-pencil>
+          <button class="green-back" data-toggle="tooltip" title="Atualizar Postagem" @click="updateN" v-b-modal.updateNoticeModal>
+            <b-icon-pencil variant="light" ></b-icon-pencil>
           </button>
-          <button @click="deleteN">
-            <b-icon-trash></b-icon-trash>
+          <button class="btn-danger" data-toggle="tooltip" title="Deletar Postagem" @click="deleteN">
+            <b-icon-trash variant="light" ></b-icon-trash>
           </button>
         </template>
-        <button v-else>
-          <b-icon-bookmark></b-icon-bookmark>
+        <button class="green-back" data-toggle="tooltip" title="Favoritar Postagem" v-else>
+          <b-icon-bookmark variant="light" ></b-icon-bookmark>
         </button>
       </div>
     </div>
@@ -105,11 +105,14 @@ export default {
   border: none;
   position: relative;
   bottom: -28px;
-  background-color: rgba(0,0,0,.1);
+  /*background-color: #004910;*/
   border-radius: 50%;
 }
+.green-back {
+  background-color: #004910
+}
 .card:hover .options button {
-  animation: showbuttons 500ms ease-in-out;
+  animation: showbuttons 270ms ease-in-out;
   animation-fill-mode: forwards;
 }
 @keyframes showbuttons {
