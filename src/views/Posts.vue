@@ -145,7 +145,7 @@ export default {
         () => {
           this.$swal({
             text: 'Postagem cadastrada com sucesso!',
-            icon: 'sucess',
+            icon: 'success',
             timer: '1900'
           }) 
           this.formCreateNotice.title = "";
@@ -162,7 +162,7 @@ export default {
         () => {
           this.$swal({
             text: 'Postagem atualizada com sucesso!',
-            icon: 'sucess',
+            icon: 'success',
             confirmButtonText: 'Ok'
           })
           this.getNoticeList(this.userAuthenticated.id)
@@ -178,7 +178,7 @@ export default {
           this.$swal({
             title: 'Sucesso',
             text: 'Noticia deletada com sucesso',
-            icon: 'sucess',
+            icon: 'success',
             timer: '1800'
           })
           this.getNoticeList(this.userAuthenticated.id)

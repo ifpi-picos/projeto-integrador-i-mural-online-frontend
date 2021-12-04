@@ -201,7 +201,7 @@ export default {
           this.$swal({
             title: 'Tudo certo',
             text: 'Login realizado com sucesso',
-            icon: 'sucess',
+            icon: 'success',
             timer: '1700'     
             })
         },

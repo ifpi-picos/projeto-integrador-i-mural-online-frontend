@@ -91,7 +91,7 @@ export default {
           this.$swal({
             title: 'Feito',
             text: "Perfil atualizado",
-            icon: "sucess",
+            icon: "success",
             timer: '1800',
           });
         },
