@@ -2,16 +2,24 @@
 
 > :heavy_exclamation_mark: **OBS**: Este repositório contempla a penas o Frontend, para execução deste faz-se necessário que o backend esteja instalado e rodando.
 
+
 ## Índice
 
-[Sobre o projeto](#sobre) | [Funcionalidades](#func) | [Layout](#layout) | [Organização](#organizacao) | [Pré-Requisitos](#prerequisitos) | [Instalação](#instalacao) | [Config Gitflow](#configgitflow) | [Tecnologias](#tecnologias) | [Ferramentas](#ferramentas) | [Deploy da Aplicação](#deploy)
+[Sobre o projeto](#sobre) | [Deploy da Aplicação](#deploy) | [Funcionalidades](#func) | [Layout](#layout) | [Organização](#organizacao) | [Pré-Requisitos](#prerequisitos) | [Instalação](#instalacao) | [Config Gitflow](#configgitflow) | [Tecnologias](#tecnologias) | [Ferramentas](#ferramentas) | [Contribuidores](#contribuidores)
+
 
 ## :computer: Sobre o projeto <a name="sobre"></a>
 O projeto **Mural Virtual** é uma aplicação de autoria dos alunos do curso de Análise e Desenvolvimento de sistemas do Instituto Federal do Piauí - Campus Picos.
 
-Esse projeto foi criado como partes das disciplinas de **Engenharia de software**, **Programação Web I e II** e agora está sendo utilizado e mantido na disciplina de projeto **integrador I** do professor **Jesiel Viana**.
+Esse projeto foi criado como partes das disciplinas de **Engenharia de software**, **Programação Web I e II** e agora está sendo utilizado e mantido na disciplinas de projeto **integrador I e II** dos professores **Jesiel Viana e João Paulo**.
 
-A sua principal função é permitir a criação de noticias sobre o campus e reunir tais noticiais em um só lugar, para acesso de todos.
+A sua principal função é permitir a criação de noticias sobre o campus e reunir tais notícias em um só lugar, para acesso de todos.
+
+## Deploy da aplicação <a name="deploy"></a>
+**A aplicação já está no ar no seguinte link:**
+
+:pushpin: [Aplicação Mural Virtual](https://mural-virtual.netlify.app/)
+
 
 ## :paperclip: Funcionalidades <a name="func"></a>
 
@@ -25,22 +33,25 @@ A sua principal função é permitir a criação de noticias sobre o campus e re
 ### :pushpin: Postagem
 - [x] Criação
 - [x] Atualização
-- [x] Deleção
+- [x] Exclusão
 
 ### :heavy_check_mark: Usabilidade
 - [x] Painel administrativo 
-- [ ] Barra de pesquisa de postagens **(Em updates futuros)**
-- [ ] Filtragem de notícias por categoria **(Em updates futuros)**
+- [x] Barra de pesquisa de postagens 
+- [x] Filtragem de postagens por categoria 
+
+
 
 ## :art: Layout <a name="layout"></a>
 
 ## :lock: Login 
 
-![Login](https://user-images.githubusercontent.com/53342708/137370285-919cf104-b445-4c71-8842-074bedea6a88.gif)
+![Login_](https://user-images.githubusercontent.com/53342708/146420785-0454c9e6-c878-43e3-b835-86b1dd4a913c.gif)
 
 
 ## :unlock: Logout
-![Logout](https://user-images.githubusercontent.com/53342708/137370604-0fae3e9f-67f5-4658-a20f-1a46155079c9.gif)
+![Logout](https://user-images.githubusercontent.com/53342708/146420787-88598e32-5e4f-4fcf-b773-61ab0f2f8f87.gif)
+
 
 
 ## :busts_in_silhouette: Cadastro Usuário
@@ -48,15 +59,18 @@ A sua principal função é permitir a criação de noticias sobre o campus e re
 
 
 ## :pencil:  Cadastro de Postagem
-![Criar Noticia](https://user-images.githubusercontent.com/53342708/137370851-b720a2d4-af86-49d8-b920-e044842756e1.gif)
+![Criação_Postagem](https://user-images.githubusercontent.com/53342708/146420791-87513bd1-e67b-499c-80bc-00048e5b2ebc.gif)
+
+## :mag_right: Filtragem e Pesquisa de Postagens
+![Filtro_de_Noticia](https://user-images.githubusercontent.com/53342708/146420723-a3c3338d-8789-4f4e-917a-fb30d743a0da.gif)
 
 
 ## :ballot_box_with_check: Atualizar Postagem
-![Atualizar Postagem](https://user-images.githubusercontent.com/53342708/137374082-d08cb0a0-1bae-49aa-a7aa-5e900b427895.gif)
+![Atualização_de_Postagem](https://user-images.githubusercontent.com/53342708/146420793-33b25854-2a27-4f6a-b026-914c3722215a.gif)
 
 
 ## :negative_squared_cross_mark: Deletar Postagem
-![Deletar Noticia](https://user-images.githubusercontent.com/53342708/137374237-dd8f9b3b-d655-45b0-a97e-c3b1a02a64d4.gif)
+![Exlusão_de_Postagem](https://user-images.githubusercontent.com/53342708/146420789-31df35fb-12fa-4503-a2db-aaf8bba591e7.gif)
 
 
 
@@ -108,10 +122,17 @@ o gitflow é um framework que foi criado para trabalhar junto com o git, ele ir�
 git flow version
 ```
 
-**Caso ele não retorne nada, faça a instalação:**
-[Windows](https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Windows)
+**Caso ele não retorne nada, faça a instalação para seu respectivo sistema operacional:**
+
+<a href="https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Windows)
 [Linux](https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Linux,-Unix,-etc.)
-[Mac Os X](https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Mac-OS-X)
+[Mac Os X](https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Mac-OS-X)Linux,-Unix,-etc"> <img height="35" alt="windows-instaltion"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg"/><a/>  
+
+<a href="https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Windows"> <img height="40" alt="Linux-instalation" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"/><a/>
+
+<a href="https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Mac-OS-X"> <img height="40" alt="Mac-instalation" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg"/><a/>
+
+
 
 **Observação:** Para usuários do fedora v31 e superior, o suporte ao gitlow foi descontinuado pelo repositório official, mas foi recontinuado pelo **Fedora Corp** para instalar acesse:
 [elegos / gitflow](https://copr.fedorainfracloud.org/coprs/elegos/gitflow/), caso queira ir direto rode os seguintes comandos no seu terminal linux:
@@ -150,19 +171,16 @@ git flow init -d
 - **Ícones:** [Font Awesome](https://fontawesome.com)
 
 
-## Deploy da aplicação <a name="deploy"></a>
-A aplicação já está no ar no seguinte link:
+## 👨‍💻 Integrantes que contribuiram ao longo do projeto <a name="contribuidores"></a>
+<table>
+</tr>
+  <tr>
+    <td align="center"><a href="https://github.com/jacksonPrimo"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/53311794?v=4" width="100px;" alt="jackson-github"/><br /><sub><b>Jackson Aquino</b></sub></a><br /><a href="https://github.com/jacksonPrimo" title="jackson-github">:octocat:</a></td>
+    <td align="center"><a href="https://github.com/samudebug"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/34324655?v=4" width="100px;" alt=""/><br /><sub><b>Samuel Martins</b></sub></a><br /><a href="https://github.com/samudebug" title="Samuel-github">:octocat:</a></td>
+    <td align="center"><a href="https://github.com/Caioleto10"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/52712306?v=4" width="100px;" alt=""/><br /><sub><b>Caio Leto</b></sub></a><br /><a href="https://github.com/Caioleto10" title="Caio-github">:octocat:</a></td>
+    <td align="center"><a href="https://rocketseat.com.br"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/57494565?v=4" width="100px;" alt=""/><br /><sub><b>Raquel Cadete</b></sub></a><br /><a href="https://rocketseat.com.br/" title="Rocketseat">:octocat:</a></td>
+    <td align="center"><a href="https://github.com/daniellamarques"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/86430405?v=4" width="100px;" alt=""/><br /><sub><b>Daniela Marques</b></sub></a><br /><a href="https://github.com/daniellamarques" title="daniela-github">:octocat:</a></td>
+     <td align="center"><a href="https://github.com/Lukas00-gif"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/62776762?v=4" width="100px;" alt=""/><br /><sub><b>Lukas Sousa</b></sub></a><br /><a href="https://github.com/Lukas00-gif" title="Lucas-github">:octocat:</a></td>
+  </tr>
+</table>
 
-:pushpin: [Aplicação Mural Virtual](https://mural-virtual.netlify.app/)
-
-
-[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=432758&assignment_repo_type=GroupAssignmentRepo)
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEyNjUxNzMyNSwxNTMwOTM0NDc3LC0yMT
-A1MDc3NzkzLC00NzAzMDY5MTEsMTgzMzUwNjg5MSwtODY4MzY3
-Njk3LC0xMjM3NTU3ODczLC0xODU5NTk3MzQzLDE5Mzg5NjAzMT
-AsLTE4MzcyODM2MzksLTExMjEzMDcwNjIsMTM1NDcxODU4NSwt
-MjkxNjUwMjksLTEyNDk2ODc4NjAsMTE2MDc3MDIzMSwtMTgwOD
-MwMjU5MiwtMjQ4NTU3NTExLDIyMjkyNzMyNSwtMTIxNTE3Mjgy
-MV19
--->
