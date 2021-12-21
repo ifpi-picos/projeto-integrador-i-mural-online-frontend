@@ -18,7 +18,7 @@ A sua principal função é permitir a criação de noticias sobre o campus e re
 ## Deploy da aplicação <a name="deploy"></a>
 **A aplicação já está no ar no seguinte link:**
 
-:pushpin: [Aplicação Mural Virtual](https://mural-virtual.netlify.app/)
+:pushpin: [Aplicação Mural Virtual](https://mural-online.netlify.app/)
 
 
 ## :paperclip: Funcionalidades <a name="func"></a>
