@@ -1,3 +1,4 @@
+
 # Projeto > Mural Virtual > Frontend
 
 > :heavy_exclamation_mark: **OBS**: Este repositório contempla a penas o Frontend, para execução deste faz-se necessário que o backend esteja instalado e rodando.
@@ -34,11 +35,14 @@ A sua principal função é permitir a criação de noticias sobre o campus e re
 - [x] Criação
 - [x] Atualização
 - [x] Exclusão
+- [ ] Comentários nas postagens **(Em updates Futuros)**
+- [ ] Favoritar postagens **(Em updates Futuros)**
 
 ### :heavy_check_mark: Usabilidade
 - [x] Painel administrativo 
 - [x] Barra de pesquisa de postagens 
 - [x] Filtragem de postagens por categoria 
+- [ ] Integração com editor de texto rico **(Em updates Futuros)**
 
 
 
@@ -124,13 +128,11 @@ git flow version
 
 **Caso ele não retorne nada, faça a instalação para seu respectivo sistema operacional:**
 
-<a href="https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Windows)
-[Linux](https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Linux,-Unix,-etc.)
-[Mac Os X](https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Mac-OS-X)Linux,-Unix,-etc"> <img height="35" alt="windows-instaltion"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg"/><a/>  
+<a href="https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Linux,-Unix,-etc."> <img height="40" alt="Linux-instalation" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg"/><a/>
 
 <a href="https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Windows"> <img height="40" alt="Linux-instalation" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"/><a/>
 
-<a href="https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Mac-OS-X"> <img height="40" alt="Mac-instalation" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg"/><a/>
+<a href="https://github.com/petervanderdoes/gitflow-avh/wiki/Installing-on-Mac-OS-X"> <img height="40" alt="Mac-instalation" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg"/><a/> 
 
 
 
@@ -183,4 +185,6 @@ git flow init -d
      <td align="center"><a href="https://github.com/Lukas00-gif"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/62776762?v=4" width="100px;" alt=""/><br /><sub><b>Lukas Sousa</b></sub></a><br /><a href="https://github.com/Lukas00-gif" title="Lucas-github">:octocat:</a></td>
   </tr>
 </table>
+
+
 
