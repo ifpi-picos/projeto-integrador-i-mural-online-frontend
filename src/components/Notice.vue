@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="rounded">
     <fa-icon icon="thumbtack" id="pin"></fa-icon>
-    <div class="card py-2">
-      <div>
-        <p class="card-title">{{title}} ({{category}})</p>
-        <p class="card-text">{{description}}</p>
+    <div class="card py-2 px-2" :style="{'background-color': notice.backgroundColor}">
+      <div :style="{'color': notice.textColor}">
+        <p class="card-title">{{notice.title}} ({{notice.category}})</p>
+        <p class="card-text text-justify">{{notice.description}}</p>
       </div>
       <div class="options" v-if="!disabled">
         <template v-if="editable">
@@ -33,17 +33,14 @@ export default {
       type: Boolean,
       default: false
     },
-    title: {
-      type: String,
-      default: ''
-    },
-    description: {
-      type: String,
-      default: ''
-    },
-    category: {
-      type:String,
-      default: ''
+    notice: {
+      type: Object,
+      default: ()=>({
+        title: "Sem Noticias", 
+        description: "Você ainda não postou nada",
+        textColor: '#000',
+        backgroundColor: '#fff',
+      })
     }
   },
   methods: {

@@ -206,22 +206,14 @@ export default {
             })
         },
         error=>{
-          const message = error.response.data.message
           console.log({...error})
-          if(message == 'password incorrect')
-            this.$swal({
-              title: 'Ops...',
-              text: 'Insira a senha correta',
-              icon: 'error',
-              timer: '1800'     
-            })
-          if(message == 'User with email not found')
-            this.$swal({
-              title: 'Email não encontrado',
-              text: 'Usuário não cadastrado no sistema',
-              icon: 'error',
-              timer: '2700'     
-            })
+          const message = error.response.data.error
+          this.$swal({
+            title: 'Ops...',
+            text: message,
+            icon: 'error',
+            timer: '1800'     
+          })
         }
       )
     },
@@ -245,7 +237,7 @@ export default {
   
     },
     register(){
-      if (this.formSignup.firstName ===''){
+      if (this.formSignup.firstName === ''){
         this.$swal({
           title: 'Atenção!',
           text: 'Por Favor Preencha o Campo Nome',
@@ -254,7 +246,7 @@ export default {
         })
       } else
 
-       if (this.formSignup.lastName ===''){
+       if (this.formSignup.lastName === ''){
         this.$swal({
           title: 'Atenção!',
           text: 'Por Favor Preencha o Campo Ultimo Nome',
@@ -263,7 +255,7 @@ export default {
         })
       } else
 
-       if (this.formSignup.email===''){
+       if (this.formSignup.email=== ''){
         this.$swal({
           title: 'Atenção!',
           text: 'Por Favor Preencha o Campo Email',
@@ -299,7 +291,7 @@ export default {
         })
       } else
 
-      if (this.formSignup.password ===''){
+      if (this.formSignup.password === ''){
         this.$swal({
           title: 'Atenção!',
           text: 'Por Favor Preencha o Campo Senha',
@@ -308,7 +300,7 @@ export default {
         })
       } else
 
-      if (this.formSignup.password.length < 7){
+      if (this.formSignup.password.length < 6){
         this.$swal({
           title: 'Atenção!',
           text: 'A Sua Senha Deve Ter no Minimo 6 Caracteres',
@@ -328,29 +320,13 @@ export default {
         },
         error=>{
           console.log({...error})
-          const code = error.response.status
-          if(code === 409 )
-            this.$swal({
-            title: 'Erro',
-            text: 'Este email ja está em uso',
+          const message = error.response.data.error
+          this.$swal({
+            title: 'Ops ...',
+            text: message,
             icon: 'warning',
             confirmButtonText: 'Ok'
           })
-          if(code === 400 )
-            this.$swal({
-            title: 'Dados Inválidos',
-            text: 'Utilize dados Válidos',
-            icon: 'warning',
-            confirmButtonText: 'Ok'
-          })
-          if(code === 500 )
-            this.$swal({
-            title: 'Erro no servidor',
-            text: 'Servidor foi pra vala',
-            icon: 'warning',
-            confirmButtonText: 'Ok'
-          })
-          
         }
       )
     }

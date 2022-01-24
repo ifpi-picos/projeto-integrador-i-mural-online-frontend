@@ -59,21 +59,24 @@ export default {
         }
       );
     },
-    updateRole(id, role) {
-      axios.put(`users/role/${id}?role=${role}`);
-      this.$swal({
-        title: "Tudo certo!",
-        text: "Mudança de privilégios efetuada com sucesso!",
-        icon: "success",
-        timer: "2200",
-      }).catch((error) => {
-        console.log(error);
+    async updateRole(id, role) {
+      try {
+        await axios.put(`users/role/${id}?role=${role}`)
         this.$swal({
-          text: "Ocorreu um erro inesperado ao mudar a função deste usuário",
+          title: "Tudo certo!",
+          text: "Mudança de privilégios efetuada com sucesso!",
+          icon: "success",
+          timer: "2200",
+        })
+      } catch(error){
+        const message = error.response.data.error
+        this.$swal({
+          title: "Oops...",
+          text: message,
           icon: "error",
           confirmButtonText: "Ok",
         });
-      });
+      }
     },
   },
 };

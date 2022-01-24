@@ -1,49 +1,37 @@
 <template>
   <b-container fluid>
-
   <b-nav-form>
-       <b-form-input 
-       size="sm" 
-       class="mr-sm-2 mt-2 ml-3" 
-       placeholder="Pesquisar Avisos"
-       v-model="search"
-       ></b-form-input>
+    <b-form-input 
+      size="sm" 
+      class="mr-sm-2 mt-2 ml-3" 
+      placeholder="Pesquisar Avisos"
+      v-model="search"
+    ></b-form-input>
 
-       <b-form-select
-          size="sm"
-          class="ml-2 mt-2"
-          :options="categories"
-          v-model="searchCategory"
-          > <option disabled value=""> Escolha uma categoria</option>  </b-form-select>
-
-       <b-button size="sm" class="mt-2 ml-2 btn-danger btn-sm" title="Limpar" btnv-b-tooltip.hover @click="LimparFiltro">
-        <b-icon-brush></b-icon-brush>
-       </b-button>
-
-        </b-nav-form>
-        
-    <div v-if="itemsFiltered.length" class="d-flex flex-wrap pt-1">
-      <div v-for="(notice, index) in itemsFiltered" :key="index" class="col-lg-3 col-md-6 col-ls-1 py-4">
-        <Notice 
-          :title="notice.title" 
-          :description="notice.description"
-          :category="notice.category"
-        ></Notice>
-      </div>
+    <b-form-select
+      size="sm"
+      class="ml-2 mt-2"
+      :options="categories"
+      v-model="searchCategory"
+    ></b-form-select>
+    <b-button size="sm" class="mt-2 ml-2 btn-danger btn-sm" title="Limpar" btnv-b-tooltip.hover @click="LimparFiltro">
+      <b-icon-brush></b-icon-brush>
+    </b-button>
+  </b-nav-form>
+  <div v-if="itemsFiltered.length" class="d-flex flex-wrap pt-1">
+    <div v-for="(notice, index) in itemsFiltered" :key="index" class="col-lg-3 col-md-6 col-ls-1 py-4">
+      <Notice :notice="notice"></Notice>
     </div>
-    <div v-else class="d-flex flex-wrap pt-1">
-      <div class="col-lg-3 col-md-6 col-ls-1">
-        <Notice 
-          disabled
-          title="Sem Noticias" 
-          description="Não há notícias no momento"
-        ></Notice>
-      </div>
+  </div>
+  <div v-else class="d-flex flex-wrap pt-1">
+    <div class="col-lg-3 col-md-6 col-ls-1">
+      <Notice
+        disabled
+      ></Notice>
     </div>
+  </div>
   </b-container>
 </template>
-
-
 <script>
 import axios from '@/services/axios.js'
 import Notice from '@/components/Notice.vue'
