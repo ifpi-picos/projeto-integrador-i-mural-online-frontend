@@ -1,46 +1,52 @@
 <template>
   <b-container fluid>
-    <div class="d-flex justify-content-center">
-      <div class="col-6 col-ls-1 py-4">
-        <form id="form-notice">
-          <input
-            class="input ocult"
-            id="title"
-            placeholder="Título"
-            v-model="formCreateNotice.title"
-            type="text"
-            required
-          />
-          <textarea
-            class="input"
-            id="description"
-            placeholder="Criar uma nova Notícia"
-            v-model="formCreateNotice.description"
-            @input="autoResize"
-            required
-          ></textarea>
-          <b-form-select class="input ocult" v-model="formCreateNotice.category" :options="categories">
-      
-          </b-form-select>
-
-          <div class="ocult">
-            <div class="d-flex justify-content-end">
-              <button @click.prevent="createNotice()">
-                <b-icon-plus></b-icon-plus>criar
-              </button>
-            </div>
-          </div>
-        </form>
+    <form class="col-md-6 col-ls-12 my-4 mx-auto" id="form-notice">
+      <input
+        class="input ocult"
+        id="title"
+        placeholder="Título"
+        v-model="formCreateNotice.title"
+        type="text"
+        required
+      />
+      <textarea
+        class="input"
+        id="description"
+        placeholder="Criar uma nova Notícia"
+        v-model="formCreateNotice.description"
+        @input="autoResize"
+        required
+      ></textarea>
+      <b-form-select 
+        class="input ocult" 
+        v-model="formCreateNotice.category" 
+        :options="categories"
+      ></b-form-select>
+      <div class="ocult">
+        <SelectColor
+          placeholder="cor do fundo" 
+          @change="e=>formCreateNotice.backgroundColor = e"
+        />
       </div>
-    </div>
+      <div class="ocult">
+        <SelectColor
+          placeholder="cor do texto" 
+          @change="e=>formCreateNotice.textColor = e"
+        />
+      </div>
+      <div class="ocult">
+        <div class="d-flex justify-content-end">
+          <button @click.prevent="createNotice()">
+            <b-icon-plus></b-icon-plus>criar
+          </button>
+        </div>
+      </div>
+    </form>
     <div v-if="noticeList.length" class="d-flex flex-wrap">
       <div v-for="(notice, index) in noticeList" :key="index" class="col-lg-3 col-md-6 col-ls-1">
         <Notice 
           editable
-          :title="notice.title" 
-          :category="notice.category" 
-          :description="notice.description"
-          :id="notice.id"
+          :notice="notice" 
           @delete="deleteNotice(notice.id)"
           @update="setValuesToUpdate(notice)"
         ></Notice>
@@ -48,11 +54,7 @@
     </div>
     <div v-else class="d-flex flex-wrap pt-1">
       <div class="col-lg-3 col-md-6 col-ls-1">
-        <Notice 
-          title="Sem Noticias" 
-          description="Você ainda não postou nada"
-          disabled
-        ></Notice>
+        <Notice disabled></Notice>
       </div>
     </div>
     <b-modal 
@@ -67,7 +69,7 @@
           >
             <b-form-input
               id="title"
-              v-model="formUpdateNotice.title"
+              v-model="noticeToUpdate.title"
               type="text"
               required
             ></b-form-input>
@@ -76,13 +78,31 @@
           <b-form-group id="input-group-2" label="Descrição" label-for="description">
             <b-form-textarea
               id="description"
-              v-model="formUpdateNotice.description"
+              v-model="noticeToUpdate.description"
               rows="3"
               required
             ></b-form-textarea>
           </b-form-group>
-          <b-form-group class="text-center">
-            <b-button @click.prevent="updateNotice()" variant="primary">Enviar</b-button>
+          <b-form-group id="input-group-2" label="Categoria" label-for="category">
+            <b-form-select 
+              class="input ocult" 
+              v-model="noticeToUpdate.category" 
+              :options="categories"
+            ></b-form-select>
+          </b-form-group>
+          <SelectColor
+            placeholder="cor do fundo" 
+            @change="e=>noticeToUpdate.backgroundColor = e"
+          />
+          <SelectColor
+            placeholder="cor do texto" 
+            @change="e=>noticeToUpdate.textColor = e"
+          />
+          <b-form-group class="text-center mt-2">
+            <b-button 
+              @click.prevent="updateNotice()" variant="primary"
+              :disabled="disableFormButton"
+            >{{disableFormButton ? 'Aguarde': 'Atualizar'}}</b-button>
           </b-form-group>
         </b-form>
     </b-modal>
@@ -93,26 +113,35 @@ import axios from '../services/axios'
 import { mapGetters } from 'vuex'
 import { categories } from '@/assets/Categories.json'
 import Notice from '@/components/Notice.vue'
+import SelectColor from '@/components/SelectColor.vue'
 export default {
   name: 'posts',
-  components: {Notice },
+  components: { Notice, SelectColor },
   data(){
     return {
-      categories,
-      noticeIdToEdit: null,
+      disableFormButton: false,
       noticeList: [],
+      categories: [
+        { value: null, text: 'selecione uma categoria' },
+        ...categories.map(c => ({ value: c, text: c }))
+      ],
       formCreateNotice: {
         userId: '',
         title: '',
         description: '',
-        category: '',
+        category: null,
+        textColor: '#000',      
+        backgroundColor: '#fff'      
       },
-      formUpdateNotice: {
+      noticeToUpdate: {
+        id: '',
         userId: '',
         title: '',
         description: '',
-        category: '',
-      }
+        category: null,
+        textColor: '#000',
+        backgroundColor: '#fff'
+      },
     }
   },
   computed: {
@@ -122,7 +151,6 @@ export default {
     const uid = this.userAuthenticated.id
     this.formCreateNotice.userId = uid
     this.getNoticeList(uid)
-    console.log(categories)
   },
   methods: {
     autoResize(e) {
@@ -140,37 +168,43 @@ export default {
         }
       )
     },
-    createNotice(){
-      axios.post('notices', this.formCreateNotice).then(
-        () => {
+    async createNotice(){
+      this.disableFormButton = true
+      try {
+        const { data: noticeCreated} = await axios.post('notices', this.formCreateNotice)
+        this.$swal({
+          text: 'Postagem cadastrada com sucesso!',
+          icon: 'success',
+          timer: '1900'
+        }) 
+        this.noticeList.push(noticeCreated)
+        this.formCreateNotice.title = "";
+        this.formCreateNotice.description = "";
+      } catch(error){
+        console.log({...error})
+          const message = error.response.data.error
           this.$swal({
-            text: 'Postagem cadastrada com sucesso!',
-            icon: 'success',
+            title: 'Oops ...',
+            text: message,
+            icon: 'error',
             timer: '1900'
           }) 
-          this.formCreateNotice.title = "";
-          this.formCreateNotice.description = "";
-          this.getNoticeList(this.userAuthenticated.id)
-        },
-        error => {
-          console.log({...error})
-        }
-      )
+      }
+      this.disableFormButton = false
     },
-    updateNotice(){
-      axios.put(`notices/${this.noticeIdToEdit}`, this.formUpdateNotice).then(
-        () => {
-          this.$swal({
-            text: 'Postagem atualizada com sucesso!',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          })
-          this.getNoticeList(this.userAuthenticated.id)
-        },
-        error => {
-          console.log({...error})
-        }
-      )
+    async updateNotice(){
+      this.disableFormButton = true;
+      try {
+        await axios.put(`notices/${this.noticeToUpdate.id}`, this.noticeToUpdate)
+        this.$swal({
+          text: 'Postagem atualizada com sucesso!',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        })
+      } catch(error){
+        console.log({...error})
+      }
+      this.disableFormButton = false;
     },
     deleteNotice(id){
       axios.delete(`notices/${id}`).then(
@@ -189,10 +223,7 @@ export default {
       )
     },
     setValuesToUpdate(notice){
-      this.noticeIdToEdit = notice.id
-      this.formUpdateNotice.title = notice.title
-      this.formUpdateNotice.description = notice.description
-      this.formUpdateNotice.userId = notice.userId
+      this.noticeToUpdate= notice
     },
   },
 }
@@ -206,27 +237,35 @@ export default {
     0 0 6px rgba(11, 11, 19, 0.3),
     0 0 8px rgba(11, 11, 19, 0.2);
 }
-#form-notice, .input {
-  border-radius: 5px;
-}
 #form-notice textarea {
   resize: none;
   overflow: hidden;
-}
-#form-notice:hover .ocult {
-  display: block;
 }
 #form-notice .input {
   width: 100%;
   border: none;
   outline: none;
 }
+#form-notice select.input {
+  padding-left: 2px;
+}
+#form-notice select.input:focus {
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+#form-notice select.input:hover {
+  cursor: pointer;
+}
 #form-notice .ocult {
   display: none;
+  transition: display 1s;
+}
+#form-notice:hover .ocult {
+  display: block;
 }
 #form-notice button {
   background-color: transparent;
   border: none;
-  border-radius: 50%;
 }
 </style>
