@@ -9,14 +9,15 @@
       <div class="options" v-if="!disabled">
         <template v-if="editable">
           <button class="green-back" data-toggle="tooltip" title="Atualizar Postagem" @click="updateN" v-b-modal.updateNoticeModal>
-            <b-icon-pencil variant="light" ></b-icon-pencil>
+            <b-icon-pencil variant="light"></b-icon-pencil>
           </button>
           <button class="btn-danger" data-toggle="tooltip" title="Deletar Postagem" @click="deleteN">
-            <b-icon-trash variant="light" ></b-icon-trash>
+            <b-icon-trash variant="light"></b-icon-trash>
           </button>
         </template>
-        <button class="green-back" data-toggle="tooltip" title="Favoritar Postagem" v-else>
-          <b-icon-bookmark variant="light" ></b-icon-bookmark>
+        <button :disabled="disabledSaveButton" class="green-back" data-toggle="tooltip" title="Favoritar Postagem" @click="saveOrUnsaveN" v-else-if="authenticated">
+          <b-icon-check v-if="hasSaved" variant="light"></b-icon-check>
+          <b-icon-bookmark v-else variant="light"></b-icon-bookmark>
         </button>
       </div>
     </div>
@@ -25,11 +26,23 @@
 <script>
 export default {
   props: {
+    authenticated: {
+      type: Boolean,
+      default: false
+    },
     editable: {
       type: Boolean,
       default: false
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    hasSaved: {
+      type: Boolean,
+      default: false
+    },
+    disabledSaveButton: {
       type: Boolean,
       default: false
     },
@@ -49,6 +62,13 @@ export default {
 		},
     updateN() {
       this.$emit('update')
+		},
+    saveOrUnsaveN() {
+      if(this.hasSaved){
+        this.$emit('unsave')
+      } else {
+        this.$emit('save')
+      }
 		},
   }
 }
