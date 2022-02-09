@@ -19,6 +19,11 @@ const routes = [
 				component: () => import('@/views/Posts.vue'),
 			},
 			{
+				path: 'postagens_salvas',
+				beforeEnter: guard.auth,
+				component: () => import('@/views/SavedNotices.vue'),
+			},
+			{
 				path: 'admin',
 				beforeEnter: guard.admin,
 				component: () => import('@/views/Admin.vue'),
