@@ -5,6 +5,10 @@
         Mural Online
         <fa-icon icon="thumbtack"></fa-icon>
       </b-navbar-brand>
+
+      <h1>{{ mode }} mode</h1> 
+      <Toggle :mode="mode" @toggle="$emit('toggle')" />
+
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav class="ml-auto">
         <b-navbar-nav class="ml-auto">
@@ -139,7 +143,10 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import Toggle from '../components/Toggle.vue'
 export default {
+  components: { Toggle },
+  props: ['mode'],
   name: 'LayoutDefalt',
   data(){
     return {
@@ -340,6 +347,10 @@ body {
 .header {
   background-color: #004910;
   min-width: 100%;
+}
+
+.dark .header  {
+  background: #15202B;
 }
 
 .brand {
