@@ -5,10 +5,7 @@
         Mural Online
         <fa-icon icon="thumbtack"></fa-icon>
       </b-navbar-brand>
-
-      <h1>{{ mode }} mode</h1> 
       <Toggle :mode="mode" @toggle="$emit('toggle')" />
-
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav class="ml-auto">
         <b-navbar-nav class="ml-auto">

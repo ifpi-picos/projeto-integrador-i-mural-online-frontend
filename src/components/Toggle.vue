@@ -21,8 +21,9 @@ export default {
 .toggle{
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 45px ;
+    height: 20px;
+    margin-top: 8px;
 }
 
 .toggle input{
@@ -46,8 +47,8 @@ export default {
 .toggler:before{
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 12px;
+    width: 12px;
     left: 4px;
     bottom: 4px;
     background: #FFF;
@@ -69,7 +70,7 @@ input:checked +  .toggler:before{
 }
 
 .toggler.round{
-    border-radius: 34px;
+    border-radius: 20px;
 }
 
 .toggler.round:before{
