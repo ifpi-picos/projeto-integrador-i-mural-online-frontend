@@ -14,8 +14,8 @@
         :options="categories"
         v-model="searchCategory"
       ></b-form-select>
-      <b-button size="sm" class="mt-2 ml-2 btn-danger btn-sm" title="Limpar" btnv-b-tooltip.hover @click="LimparFiltro">
-        <b-icon-brush></b-icon-brush>
+      <b-button size="sm" class="mt-2 ml-2 btn-secondary btn-sm" title="Limpar" btnv-b-tooltip.hover @click="LimparFiltro">
+        <b-icon-x></b-icon-x>
       </b-button>
     </b-nav-form>
     <div v-if="itemsFiltered.length" class="d-flex flex-wrap pt-1">

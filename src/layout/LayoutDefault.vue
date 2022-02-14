@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" class="header">
-      <b-navbar-brand to="/" class="text-white">
+      <b-navbar-brand to="/">
         Mural Online
         <fa-icon icon="thumbtack"></fa-icon>
       </b-navbar-brand>
@@ -24,7 +24,7 @@
           <slot v-if="authenticated">
             <b-nav-item-dropdown right >
               <template #button-content>
-                <em class="text-light">
+                <em class="text-success">
                   <b-icon-person-circle class="icon"></b-icon-person-circle> {{ userAuthenticated.email }}
                 </em>
               </template>
@@ -347,23 +347,27 @@ body {
   width: 100%;
 }
 .header {
-  background-color: #004910;
-  min-width: 100%;
+  box-shadow:
+    0 0 2px rgba(11, 11, 19, 0.4),
+    0 0 3px rgba(11, 11, 19, 0.3),
+    0 0 4px rgba(11, 11, 19, 0.2);
 }
 
 .dark .header  {
   background: #15202B;
+  box-shadow: none;
 }
-
-.brand {
-  color: #eeeeee;
+.brand,
+.navbar a,
+.navbar-light .navbar-nav .nav-link,
+.btn .b-icon.bi, 
+.nav-link .b-icon.bi, 
+.dropdown-toggle .b-icon.bi, 
+.dropdown-item .b-icon.bi, 
+.input-group-text .b-icon.bi {
+  color: #28a745;
 }
-
-.navbar-light .navbar-nav .nav-link{
-  color: #eeeeee;
-}
-
-.btn .b-icon.bi, .nav-link .b-icon.bi, .dropdown-toggle .b-icon.bi, .dropdown-item .b-icon.bi, .input-group-text .b-icon.bi{
-  color: #eeeeee;
+.navbar a:hover, .navbar a:focus {
+  color: #28a745;
 }
 </style>
