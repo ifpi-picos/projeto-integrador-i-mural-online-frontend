@@ -232,10 +232,8 @@ export default {
 #form-notice {
   background-color: white;
   padding: 8px;
-  box-shadow: 
-    0 0 5px rgba(11, 11, 19, 0.4),
-    0 0 6px rgba(11, 11, 19, 0.3),
-    0 0 8px rgba(11, 11, 19, 0.2);
+  box-shadow: 2px 2px 5px rgba(11, 11, 19, 0.4);
+  border-radius: 5px;
 }
 #form-notice textarea {
   resize: none;

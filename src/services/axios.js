@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '../store';
 const baseURL = process.env.VUE_APP_BASE_URL || 'http://localhost:3000'
 const api = axios.create({
 	baseURL
@@ -20,6 +21,10 @@ api.interceptors.response.use(
 		return response;
 	},
 	error => {
+		if(error.response.data.error == 'Token inválido!'){
+			store.dispatch('auth/signOut')
+			window.location.reload()
+		}
 		return Promise.reject(error);
 	}
 );

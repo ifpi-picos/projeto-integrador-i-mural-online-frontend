@@ -3,7 +3,7 @@
     <b-nav-form>
       <b-form-input 
         size="sm" 
-        class="mr-sm-2 mt-2 ml-2" 
+        class="mr-sm-2 mt-2 ml-3" 
         placeholder="Pesquisar Avisos"
         v-model="search"
       ></b-form-input>
@@ -19,13 +19,12 @@
       </b-button>
     </b-nav-form>
     <div v-if="itemsFiltered.length" class="d-flex flex-wrap pt-1">
-      <div v-for="(notice, index) in itemsFiltered" :key="index" class="col-lg-3 col-md-6 col-ls-1 py-4">
+      <div v-for="(savedNotice, index) in itemsFiltered" :key="index" class="col-lg-3 col-md-6 col-ls-1 py-4">
         <Notice 
           :disabledSaveButton="disabledSaveButton"
-          :notice="notice"
-          :hasSaved="notice.hasSaved"
-          @save="saveNotice(notice.id, index)"
-          @unsave="unSaveNotice(notice.id, index)"
+          :notice="savedNotice.notice"
+          :hasSaved="true"
+          @unsave="unSaveNotice(savedNotice.id, index)"
           :authenticated="authenticated"
         ></Notice>
       </div>
@@ -45,23 +44,24 @@ import Notice from '@/components/Notice.vue'
 import { categories } from '@/assets/Categories.json'
 import { mapGetters } from 'vuex'
 export default {
-  name: 'Home',
+  name: 'SavedNotices',
   components: {
     Notice
   },
   data(){
     return {
       categories,
-      noticeList: [],
+      savedNotices: [],
       search: "",
       searchCategory: "",
       disabledSaveButton: false
     }
   },
   mounted(){
-    axios.get('notices').then(
+    axios.get('savedNotices').then(
       resp=>{
-        this.noticeList = resp.data
+        this.savedNotices = resp.data
+        console.log(this.savedNotices)
       },
       error=>{
         console.log({...error})
@@ -73,28 +73,13 @@ export default {
       this.search = "";
       this.searchCategory = ""
     },
-    async saveNotice(noticeId, index){
+    async unSaveNotice(savedNoticeId, index){
       this.disabledSaveButton = true;
-      this.noticeList[index].hasSaved = true;
       try {
-       await axios.post('savedNotices', { noticeId })
-      } catch(error) {
-        this.$swal.fire('Desculpe ocorreu um erro ao tentar salvar esta publicação', '', 'error')
-        console.log(error)
-        this.noticeList[index].hasSaved = null;
-      }
-      this.disabledSaveButton = false;
-    },
-    async unSaveNotice(noticeId, index){
-      this.disabledSaveButton = true;
-      const hasSaved = this.noticeList[index].hasSaved
-      this.noticeList[index].hasSaved = null;
-      try {
-        await axios.delete(`savedNotices/${hasSaved.id}`)
+        await axios.delete(`savedNotices/${savedNoticeId}`)
+        this.savedNotices.splice(index, 1);
       } catch(error) {
         this.$swal.fire('Desculpe ocorreu um erro ao remover esta publicação das salvas', '', 'error')
-        console.log(error)
-        this.noticeList[index].hasSaved = hasSaved;
       }
       this.disabledSaveButton = false;
     }
@@ -102,12 +87,12 @@ export default {
   computed: {
     ...mapGetters('auth', ['authenticated']),
     itemsFiltered(){
-      return this.noticeList.filter((notice )=>{
+      return this.savedNotices.filter((savedNotice)=>{
         return(
-          notice.title.toLowerCase().match(this.search.toLowerCase()) && 
-          notice.category.toLowerCase().match(this.searchCategory.toLowerCase())
+          savedNotice.notice.title.toLowerCase().match(this.search.toLowerCase()) && 
+          savedNotice.notice.category.toLowerCase().match(this.searchCategory.toLowerCase())
         );
-      });  
+      });
     }
   }
 }
