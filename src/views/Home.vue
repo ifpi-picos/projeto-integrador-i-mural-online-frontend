@@ -20,13 +20,12 @@
     </b-nav-form>
     <div v-if="itemsFiltered.length" class="d-flex flex-wrap pt-1">
       <div v-for="(notice, index) in itemsFiltered" :key="index" class="col-lg-3 col-md-6 col-ls-1 py-4">
-        <Notice 
+        <Notice
           :disabledSaveButton="disabledSaveButton"
           :notice="notice"
-          :hasSaved="notice.hasSaved"
+          :hasSaved="!!notice.hasSaved"
           @save="saveNotice(notice.id, index)"
           @unsave="unSaveNotice(notice.id, index)"
-          :authenticated="authenticated"
         ></Notice>
       </div>
     </div>

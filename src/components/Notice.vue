@@ -15,21 +15,62 @@
             <b-icon-trash variant="light"></b-icon-trash>
           </button>
         </template>
-        <button :disabled="disabledSaveButton" class="green-back" data-toggle="tooltip" title="Favoritar Postagem" @click="saveOrUnsaveN" v-else-if="authenticated">
-          <b-icon-check v-if="hasSaved" variant="light"></b-icon-check>
-          <b-icon-bookmark v-else variant="light"></b-icon-bookmark>
-        </button>
+        <template v-else>
+          <button :disabled="disabledSaveButton" class="green-back" data-toggle="tooltip" title="Favoritar Postagem" @click="saveOrUnsaveN" v-if="authenticated">
+            <b-icon-check v-if="hasSaved" variant="light"></b-icon-check>
+            <b-icon-bookmark v-else variant="light"></b-icon-bookmark>
+          </button>
+          <button class="green-back" 
+            @click="$bvModal.show(`commentsModal-${notice.id}`)"
+          >
+            <b-icon-chat variant="light"></b-icon-chat>
+          </button>
+          <b-modal 
+            :id="`commentsModal-${notice.id}`" 
+            :ref="`commentsModal-${notice.id}`" 
+            title="comentarios" 
+            hide-footer
+          >
+            <div 
+              class="border-bottom" 
+              v-for="(comment, index) in notice.comments"
+              :key="index"
+            >
+              <p>
+                <b-icon-person-circle/>
+                {{comment.owner.email}}
+                <b-icon-trash 
+                  variant="danger"
+                  @click="removeComment(comment.id, index)"
+                  v-if="authenticated && comment.userId == userAuthenticated.id"
+                ></b-icon-trash>
+              </p>
+              <p>
+                {{comment.message}}
+              </p>
+            </div>
+            <b-form v-if="authenticated" @submit.prevent="addComment">
+              <b-form-input 
+                size="sm" 
+                class="mr-sm-2 mt-2 ml-2" 
+                placeholder="adicione um comentário"
+                v-model="commentToAdd"
+              ></b-form-input>
+            </b-form>
+          </b-modal>
+        </template>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+import axios from '@/services/axios.js'
 export default {
+  data: ()=>({
+    commentToAdd: ''
+  }),
   props: {
-    authenticated: {
-      type: Boolean,
-      default: false
-    },
     editable: {
       type: Boolean,
       default: false
@@ -56,6 +97,9 @@ export default {
       })
     }
   },
+  computed: {
+    ...mapGetters('auth', ['authenticated', 'userAuthenticated']),
+  },
   methods: {
     deleteN() {
       this.$emit('delete')
@@ -70,6 +114,46 @@ export default {
         this.$emit('save')
       }
 		},
+    async addComment(){
+      if(this.commentToAdd){
+        try {
+          const { data: commentAdded } = await axios.post(`comments`, {
+            message: this.commentToAdd,
+            noticeId: this.notice.id
+          })
+          this.notice.comments.push({
+            ...commentAdded,
+            owner: {
+              email: this.userAuthenticated.email
+            } 
+          })
+        } catch(error){
+          console.log({...error})
+          const message = error.response.data.error
+          this.$swal({
+            title: 'Oops ...',
+            text: message,
+            icon: 'error',
+            timer: '1900'
+          })
+        }
+      }
+    },
+    async removeComment(id, index){
+      try {
+        await axios.delete(`comments/${id}`)
+        this.notice.comments.splice(index, 1)
+      } catch(error){
+        console.log({...error})
+        const message = error.response.data.error
+        this.$swal({
+          title: 'Oops ...',
+          text: message,
+          icon: 'error',
+          timer: '1900'
+        })
+      }
+    }
   }
 }
 </script>
@@ -119,7 +203,6 @@ export default {
   border: none;
   position: relative;
   bottom: -28px;
-  /*background-color: #004910;*/
   border-radius: 50%;
 }
 .green-back {
