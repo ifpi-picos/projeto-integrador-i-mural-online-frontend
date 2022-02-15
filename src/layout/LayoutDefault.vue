@@ -2,9 +2,13 @@
   <div>
     <b-navbar toggleable="lg" class="header">
       <b-navbar-brand to="/">
-        Mural Online
+        <img class="logo" alt="Mural Online" src="../assets/logo.png">
         <fa-icon icon="thumbtack"></fa-icon>
       </b-navbar-brand>
+      <!--<b-navbar-brand to="/">
+        Mural Online 
+        <fa-icon icon="thumbtack"></fa-icon>
+      </b-navbar-brand>-->
       <Toggle :mode="mode" @toggle="$emit('toggle')" />
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav class="ml-auto">
@@ -351,6 +355,10 @@ body {
     0 0 2px rgba(11, 11, 19, 0.4),
     0 0 3px rgba(11, 11, 19, 0.3),
     0 0 4px rgba(11, 11, 19, 0.2);
+}
+
+.logo{
+  width: 250px
 }
 
 .dark .header  {
